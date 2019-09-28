@@ -29,7 +29,7 @@ func (bs BitStream) WriteBit(bit uint8) (int, error) {
 	return bs.BitBuffer.Write([]byte{bit})
 }
 
-// WritePadds zero paddings
+// WritePadds padds zeros
 func (bs BitStream) WritePadds() (int, error) {
 	bs.Padding = 8 - (bs.BitBuffer.Len() % 8)
 	var size = 0
