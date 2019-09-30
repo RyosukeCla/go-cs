@@ -6,14 +6,12 @@ import (
 
 // BitStream struct
 type BitStream struct {
-	Padding   int
 	BitBuffer *bytes.Buffer
 }
 
 // NewBitStream returns BitStream
 func NewBitStream() BitStream {
 	return BitStream{
-		Padding:   0,
 		BitBuffer: bytes.NewBuffer([]byte{}),
 	}
 }
@@ -37,17 +35,13 @@ func (bs *BitStream) WriteBytesAsBits(p []byte) (int, error) {
 }
 
 // WritePadds padds zeros
-func (bs BitStream) WritePadds() (int, error) {
-	bs.Padding = 8 - (bs.BitBuffer.Len() % 8)
-	var size = 0
-	for i := 0; i < bs.Padding; i++ {
-		n, err := bs.Write([]byte{0})
-		size += n
-		if err != nil {
-			return size, err
-		}
+func (bs *BitStream) WritePadds() (int, error) {
+	padding := 8 - (bs.BitBuffer.Len() % 8)
+	buffer := make([]byte, padding, padding)
+	for i := 0; i < padding; i++ {
+		buffer[i] = 0
 	}
-	return size, nil
+	return bs.Write(buffer)
 }
 
 // ReadAsBytes reads bits as bytes
