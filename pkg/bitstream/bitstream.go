@@ -2,9 +2,6 @@ package bitstream
 
 import (
 	"bytes"
-	"errors"
-	"fmt"
-	"io"
 )
 
 // BitStream struct
@@ -21,12 +18,22 @@ func NewBitStream() BitStream {
 	}
 }
 
-// WriteBit writes bit to buffer
-func (bs BitStream) WriteBit(bit uint8) (int, error) {
-	if bit != 0 && bit != 1 {
-		return 0, errors.New("only 0 or 1")
+// Write writes bits []{0, 1}
+func (bs *BitStream) Write(bits []byte) (int, error) {
+	return bs.BitBuffer.Write(bits)
+}
+
+// WriteBytesAsBits converts p to bits and writes bits.
+func (bs *BitStream) WriteBytesAsBits(p []byte) (int, error) {
+	n := 0
+	for _, oneByte := range p {
+		nb, err := bs.Write(ByteToBits(oneByte))
+		if err != nil {
+			return n, err
+		}
+		n += nb
 	}
-	return bs.BitBuffer.Write([]byte{bit})
+	return n, nil
 }
 
 // WritePadds padds zeros
@@ -34,7 +41,7 @@ func (bs BitStream) WritePadds() (int, error) {
 	bs.Padding = 8 - (bs.BitBuffer.Len() % 8)
 	var size = 0
 	for i := 0; i < bs.Padding; i++ {
-		n, err := bs.WriteBit(0)
+		n, err := bs.Write([]byte{0})
 		size += n
 		if err != nil {
 			return size, err
@@ -43,23 +50,43 @@ func (bs BitStream) WritePadds() (int, error) {
 	return size, nil
 }
 
-// ToByteBuffer returns ByteBuffer
-func (bs BitStream) ToByteBuffer() *bytes.Buffer {
-	byteBuffer := bytes.NewBuffer([]byte{})
-	buffer := make([]uint8, 8)
-	for {
-		_, err := bs.BitBuffer.Read(buffer)
-		if err == io.EOF {
-			break
+// ReadAsBytes reads bits as bytes
+func (bs *BitStream) ReadAsBytes(p []byte) (int, error) {
+	length := len(p)
+	buffer := make([]byte, 8, 8)
+	n := 0
+	for i := 0; i < length; i++ {
+		nb, err := bs.BitBuffer.Read(buffer)
+		if err != nil {
+			return n, err
 		}
-		fmt.Printf("%b \n", buffer)
-		var bits uint8 = 0
-		for _, bit := range buffer {
-			bits = (bits << 1) + bit
-		}
-		fmt.Printf("%b \n", bits)
-		byteBuffer.Write([]byte{bits})
+		n += nb
+		p[i] = BitsToByte(buffer)
 	}
-	fmt.Printf("%b \n", byteBuffer)
-	return byteBuffer
+	return n, nil
+}
+
+// Read reads bits
+func (bs *BitStream) Read(p []byte) (int, error) {
+	return bs.BitBuffer.Read(p)
+}
+
+// ByteToBits return bits slice
+func ByteToBits(oneByte uint8) []byte {
+	bits := make([]byte, 8, 8)
+	for i := uint8(7); i > 0; i-- {
+		bit := (oneByte >> i) & 1
+		bits[7-i] = bit
+	}
+	bits[7] = oneByte & 1
+	return bits
+}
+
+// BitsToByte return byte. requires 8 bits.
+func BitsToByte(bits []byte) byte {
+	var oneByte byte = 0
+	for _, bit := range bits {
+		oneByte = (oneByte << 1) + bit
+	}
+	return oneByte
 }
