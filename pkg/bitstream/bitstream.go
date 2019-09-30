@@ -44,7 +44,7 @@ func (bs *BitStream) WritePadds() (int, error) {
 	return bs.Write(buffer)
 }
 
-// ReadAsBytes reads bits as bytes
+// ReadAsBytes reads 8x bits as x bytes
 func (bs *BitStream) ReadAsBytes(p []byte) (int, error) {
 	length := len(p)
 	buffer := make([]byte, 8, 8)
@@ -65,7 +65,7 @@ func (bs *BitStream) Read(p []byte) (int, error) {
 	return bs.BitBuffer.Read(p)
 }
 
-// ByteToBits return bits slice
+// ByteToBits convert 1 byte to 8 bits
 func ByteToBits(oneByte byte) []uint8 {
 	bits := make([]byte, 8, 8)
 	for i := byte(7); i > 0; i-- {
@@ -76,7 +76,7 @@ func ByteToBits(oneByte byte) []uint8 {
 	return bits
 }
 
-// BitsToByte return byte. requires 8 bits.
+// BitsToByte convert 8 bits to 1 byte
 func BitsToByte(bits []uint8) byte {
 	var oneByte byte = 0
 	for _, bit := range bits {
