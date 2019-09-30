@@ -66,9 +66,9 @@ func (bs *BitStream) Read(p []byte) (int, error) {
 }
 
 // ByteToBits return bits slice
-func ByteToBits(oneByte uint8) []byte {
+func ByteToBits(oneByte byte) []uint8 {
 	bits := make([]byte, 8, 8)
-	for i := uint8(7); i > 0; i-- {
+	for i := byte(7); i > 0; i-- {
 		bit := (oneByte >> i) & 1
 		bits[7-i] = bit
 	}
@@ -77,7 +77,7 @@ func ByteToBits(oneByte uint8) []byte {
 }
 
 // BitsToByte return byte. requires 8 bits.
-func BitsToByte(bits []byte) byte {
+func BitsToByte(bits []uint8) byte {
 	var oneByte byte = 0
 	for _, bit := range bits {
 		oneByte = (oneByte << 1) + bit
