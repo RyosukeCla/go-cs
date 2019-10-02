@@ -16,8 +16,8 @@ type Code struct {
 	Code   []byte
 }
 
-// BuildCode returns bits
-func BuildCode(order int, maxOrder int) []byte {
+// buildCode returns bits
+func buildCode(order int, maxOrder int) []byte {
 	if order == 0 {
 		return []byte{0}
 	} else if order == maxOrder {
@@ -47,7 +47,7 @@ func Build(symbols []Symbol) []Code {
 	for i, symbol := range symbols {
 		codes[i] = Code{
 			Symbol: symbol.Symbol,
-			Code:   BuildCode(i, symbolLen-1),
+			Code:   buildCode(i, symbolLen-1),
 		}
 	}
 
