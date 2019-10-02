@@ -65,6 +65,16 @@ func (bs *BitStream) Read(p []byte) (int, error) {
 	return bs.BitBuffer.Read(p)
 }
 
+// Bits returns a slice of bs.Len() bits
+func (bs *BitStream) Bits() []byte {
+	return bs.BitBuffer.Bytes()
+}
+
+// Len returns the number of bits
+func (bs *BitStream) Len() int {
+	return bs.BitBuffer.Len()
+}
+
 // ByteToBits convert 1 byte to 8 bits
 func ByteToBits(oneByte byte) []uint8 {
 	bits := make([]byte, 8, 8)
