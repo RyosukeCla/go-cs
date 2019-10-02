@@ -6,13 +6,13 @@ import (
 
 // Symbol type aiueo
 type Symbol struct {
-	Symbol     string
+	Symbol     byte
 	Occurrence uint64
 }
 
 // Code type aiueo
 type Code struct {
-	Symbol string
+	Symbol byte
 	Code   []byte
 }
 
