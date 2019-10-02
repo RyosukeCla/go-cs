@@ -35,7 +35,7 @@ func (en *Encoder) Write(p []byte) (int, error) {
 	return en.buffer.Write(p)
 }
 
-// Read decodes and reads buffer
+// Read decodes buffer and reads codes
 func (en *Encoder) Read(codes []Code) (int, error) {
 	codeLen := len(codes)
 	n := 0
@@ -120,6 +120,7 @@ func NewDecoder() Decoder {
 	}
 }
 
+// Write writes and decodes codes
 func (de *Decoder) Write(codes []Code) (int, error) {
 	n := 0
 	for _, code := range codes {
@@ -139,6 +140,7 @@ func (de *Decoder) Write(codes []Code) (int, error) {
 	return n, nil
 }
 
+// Read reads decoded codes
 func (de *Decoder) Read(p []byte) (int, error) {
 	return de.buffer.Read(p)
 }
