@@ -5,6 +5,9 @@ bits:
 huffman:
 	cd ./pkg/huffman; go test
 
+lz77:
+	cd ./pkg/lz77; go test
+
 sample:
 	cd ./pkg/sample; go test
 
