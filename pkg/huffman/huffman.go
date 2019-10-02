@@ -43,12 +43,10 @@ func BuildCode(order int, maxOrder int) []byte {
 // Build builds symbols
 func Build(symbols []Symbol) []Code {
 	symbolLen := len(symbols)
-	sortedSymbols := make([]Symbol, symbolLen)
-	copy(sortedSymbols, symbols)
-	sort.SliceStable(sortedSymbols, func(i, j int) bool { return symbols[i].Occurrence > symbols[j].Occurrence })
+	sort.SliceStable(symbols, func(i, j int) bool { return symbols[i].Occurrence > symbols[j].Occurrence })
 
 	codes := make([]Code, symbolLen)
-	for i, symbol := range sortedSymbols {
+	for i, symbol := range symbols {
 		bitStream := bits.NewBitStream()
 		bitStream.Write([]byte{0})
 		codes[i] = Code{
