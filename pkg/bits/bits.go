@@ -25,7 +25,7 @@ func (bs *BitStream) Write(bits []byte) (int, error) {
 func (bs *BitStream) WriteBytesAsBits(p []byte) (int, error) {
 	n := 0
 	for _, oneByte := range p {
-		nb, err := bs.Write(ByteToBits(oneByte))
+		nb, err := bs.Write(FromByte(oneByte))
 		if err != nil {
 			return n, err
 		}
@@ -55,7 +55,7 @@ func (bs *BitStream) ReadAsBytes(p []byte) (int, error) {
 			return n, err
 		}
 		n += nb
-		p[i] = BitsToByte(buffer)
+		p[i] = ToByte(buffer)
 	}
 	return n, nil
 }
@@ -75,8 +75,8 @@ func (bs *BitStream) Len() int {
 	return bs.BitBuffer.Len()
 }
 
-// ByteToBits convert 1 byte to 8 bits
-func ByteToBits(oneByte byte) []uint8 {
+// FromByte convert 1 byte to 8 bits
+func FromByte(oneByte byte) []uint8 {
 	bits := make([]byte, 8, 8)
 	for i := byte(7); i > 0; i-- {
 		bit := (oneByte >> i) & 1
@@ -86,8 +86,8 @@ func ByteToBits(oneByte byte) []uint8 {
 	return bits
 }
 
-// BitsToByte convert 8 bits to 1 byte
-func BitsToByte(bits []uint8) byte {
+// ToByte convert 8 bits to 1 byte
+func ToByte(bits []uint8) byte {
 	var oneByte byte = 0
 	for _, bit := range bits {
 		oneByte = (oneByte << 1) + bit
