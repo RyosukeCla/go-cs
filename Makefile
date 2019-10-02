@@ -1,6 +1,6 @@
 
-bitstream:
-	cd ./pkg/bitstream; go test
+bits:
+	cd ./pkg/bits; go test
 
 huffman:
 	cd ./pkg/huffman; go test
