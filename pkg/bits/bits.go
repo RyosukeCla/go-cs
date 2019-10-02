@@ -7,19 +7,19 @@ import (
 
 // BitStream struct
 type BitStream struct {
-	BitBuffer *bytes.Buffer
+	bitBuffer *bytes.Buffer
 }
 
 // NewBitStream returns BitStream
 func NewBitStream(bits []byte) BitStream {
 	return BitStream{
-		BitBuffer: bytes.NewBuffer(bits),
+		bitBuffer: bytes.NewBuffer(bits),
 	}
 }
 
 // Write writes bits []{0, 1}
 func (bs *BitStream) Write(bits []byte) (int, error) {
-	return bs.BitBuffer.Write(bits)
+	return bs.bitBuffer.Write(bits)
 }
 
 // WriteFromBytes converts p to bits and writes bits.
@@ -37,7 +37,7 @@ func (bs *BitStream) WriteFromBytes(p []byte) (int, error) {
 
 // WritePadds padds zeros
 func (bs *BitStream) WritePadds() (int, error) {
-	padding := 8 - (bs.BitBuffer.Len() % 8)
+	padding := 8 - (bs.bitBuffer.Len() % 8)
 	buffer := make([]byte, padding, padding)
 	for i := 0; i < padding; i++ {
 		buffer[i] = 0
@@ -47,7 +47,7 @@ func (bs *BitStream) WritePadds() (int, error) {
 
 // Read reads bits
 func (bs *BitStream) Read(p []byte) (int, error) {
-	return bs.BitBuffer.Read(p)
+	return bs.bitBuffer.Read(p)
 }
 
 // ReadAsBytes reads 8x bits as x bytes
@@ -71,12 +71,12 @@ func (bs *BitStream) ReadAsBytes(p []byte) (int, error) {
 
 // Bits returns a slice of bs.Len() bits
 func (bs *BitStream) Bits() []byte {
-	return bs.BitBuffer.Bytes()
+	return bs.bitBuffer.Bytes()
 }
 
 // Len returns the number of bits
 func (bs *BitStream) Len() int {
-	return bs.BitBuffer.Len()
+	return bs.bitBuffer.Len()
 }
 
 // FromByte convert 1 byte to 8 bits
