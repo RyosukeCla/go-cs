@@ -93,8 +93,8 @@ func (en *Encoder) Read(codes []Code) (int, error) {
 }
 
 func (en *Encoder) slideLookAheadBuffer() {
-	len := en.WindowSize - en.lookAheadBuffer.Len()
-	bufferForLookAhead := make([]byte, len)
+	length := en.WindowSize - en.lookAheadBuffer.Len()
+	bufferForLookAhead := make([]byte, length)
 	n, err := en.buffer.Read(bufferForLookAhead)
 	if err != nil {
 		return
@@ -104,11 +104,11 @@ func (en *Encoder) slideLookAheadBuffer() {
 
 func (en *Encoder) slideSearchBuffer(token []byte) {
 	en.searchBuffer.Write(token)
-	len := en.searchBuffer.Len() - en.WindowSize
-	if len < 0 {
-		len = 0
+	length := en.searchBuffer.Len() - en.WindowSize
+	if length < 0 {
+		length = 0
 	}
-	remove := make([]byte, len)
+	remove := make([]byte, length)
 	en.searchBuffer.Read(remove)
 }
 
@@ -133,8 +133,8 @@ func (de *Decoder) Write(codes []Code) (int, error) {
 			n += nb
 		} else {
 			dictionary := de.buffer.Bytes()
-			len := de.buffer.Len()
-			from := len - code.Dist
+			length := de.buffer.Len()
+			from := length - code.Dist
 			to := from + code.Len
 			nb, _ := de.buffer.Write(dictionary[from:to])
 			n += nb
