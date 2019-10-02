@@ -45,7 +45,7 @@ func Build(symbols []Symbol) []Code {
 	symbolLen := len(symbols)
 	sortedSymbols := make([]Symbol, symbolLen)
 	copy(sortedSymbols, symbols)
-	sort.SliceStable(sortedSymbols, func(i, j int) bool { return symbols[i].Occurrence < symbols[j].Occurrence })
+	sort.SliceStable(sortedSymbols, func(i, j int) bool { return symbols[i].Occurrence > symbols[j].Occurrence })
 
 	codes := make([]Code, symbolLen)
 	for i, symbol := range sortedSymbols {
