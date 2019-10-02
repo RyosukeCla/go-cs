@@ -1,61 +1,102 @@
 package bits
 
 import (
-	"bytes"
-	"fmt"
+	"reflect"
 	"testing"
 )
 
-func check(e error) {
-	if e != nil {
-		panic(e)
+func TestFromByte(t *testing.T) {
+	actual := FromByte(20)
+	expected := []byte{0, 0, 0, 1, 0, 1, 0, 0}
+
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatal("Fail")
+	}
+
+	actual = FromByte(255)
+	expected = []byte{1, 1, 1, 1, 1, 1, 1, 1}
+
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatal("Fail")
+	}
+}
+
+func TestToByte(t *testing.T) {
+	actual := ToByte([]byte{0, 0, 0, 1, 0, 1, 0, 0})
+	expected := byte(20)
+
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatal("Fail")
+	}
+
+	actual = ToByte([]byte{1, 1, 1, 1, 1, 1, 1, 1})
+	expected = byte(255)
+
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatal("Fail")
 	}
 }
 
 func TestBitStream_Write(t *testing.T) {
-	var bits = []uint8{1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 1, 0}
-	fmt.Println("bits \t\t", bits)
-	var bs = NewBitStream()
+	bits := []uint8{1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 1, 0}
+	bs := NewBitStream()
 	bs.Write(bits)
-	bs.WritePadds()
 
-	fmt.Println("padded bits \t", bs.BitBuffer.Bytes())
+	if !reflect.DeepEqual(bs.Bits(), bits) {
+		t.Fatal("Fail")
+	}
+}
 
-	byteBuffer := bytes.NewBuffer([]byte{})
-	buffer := make([]byte, 1)
-	for {
-		_, err := bs.ReadAsBytes(buffer)
-		if err != nil {
-			break
-		}
-		byteBuffer.Write(buffer)
+func TestBitStream_WriteFromBytes(t *testing.T) {
+	bytes := []byte{255, 20}
+	bits := []byte{1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 1, 0, 0}
+	bs := NewBitStream()
+	bs.WriteFromBytes(bytes)
+	if !reflect.DeepEqual(bs.Bits(), bits) {
+		t.Fatal("Fail")
+	}
+}
+
+func TestBitStream_Read(t *testing.T) {
+	bs := NewBitStream()
+
+	bs.Write([]byte{0, 0, 0, 0, 0, 0, 0, 1})
+	bits := make([]byte, 7)
+	bs.Read(bits)
+
+	if !reflect.DeepEqual(bits, []byte{0, 0, 0, 0, 0, 0, 0}) {
+		t.Fatal("Fail")
+	}
+	if !reflect.DeepEqual(bs.Bits(), []byte{1}) {
+		t.Fatal("Fail")
+	}
+	if bs.Len() != 1 {
+		t.Fatal("Fail")
+	}
+}
+
+func TestBitStream_ReadAsBytes(t *testing.T) {
+	bits := []byte{1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 1, 0, 0} // 255, 20,
+	bs := NewBitStream()
+	bs.Write(bits)
+	bytes := make([]byte, 2)
+	bs.ReadAsBytes(bytes)
+
+	if !reflect.DeepEqual(bytes, []byte{255, 20}) {
+		t.Fatal("Fail")
+	}
+	if !reflect.DeepEqual(bs.Bits(), []byte{}) {
+		t.Fatal("Fail")
+	}
+	if bs.Len() != 0 {
+		t.Fatal("Fail")
 	}
 
-	fmt.Println("bytes \t\t", byteBuffer.Bytes())
-
-	var bs2 = NewBitStream()
-	buffer = make([]byte, 1, 1)
-	for {
-		_, err := byteBuffer.Read(buffer)
-		if err != nil {
-			break
-		}
-		bs2.WriteBytesAsBits(buffer)
-	}
-
-	fmt.Println("decoded \t", bs2.BitBuffer.Bytes())
-
-	// file, err := os.Create("./result.txt")
-	// check(err)
-	// defer file.Close()
-
-	// _, err = file.Write(aiueo)
-	// check(err)
-
-	// file.Sync()
-	// file.Close()
-
-	if 0 != 0 {
-		t.Fatal("failed test")
+	bs = NewBitStream()
+	bs.Write([]byte{0})
+	bytes = make([]byte, 1)
+	n, err := bs.ReadAsBytes(bytes)
+	if n != 1 || err == nil {
+		t.Fatal("Fail")
 	}
 }

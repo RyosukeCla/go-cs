@@ -2,6 +2,7 @@ package bits
 
 import (
 	"bytes"
+	"errors"
 )
 
 // BitStream struct
@@ -21,8 +22,8 @@ func (bs *BitStream) Write(bits []byte) (int, error) {
 	return bs.BitBuffer.Write(bits)
 }
 
-// WriteBytesAsBits converts p to bits and writes bits.
-func (bs *BitStream) WriteBytesAsBits(p []byte) (int, error) {
+// WriteFromBytes converts p to bits and writes bits.
+func (bs *BitStream) WriteFromBytes(p []byte) (int, error) {
 	n := 0
 	for _, oneByte := range p {
 		nb, err := bs.Write(FromByte(oneByte))
@@ -44,25 +45,28 @@ func (bs *BitStream) WritePadds() (int, error) {
 	return bs.Write(buffer)
 }
 
+// Read reads bits
+func (bs *BitStream) Read(p []byte) (int, error) {
+	return bs.BitBuffer.Read(p)
+}
+
 // ReadAsBytes reads 8x bits as x bytes
 func (bs *BitStream) ReadAsBytes(p []byte) (int, error) {
 	length := len(p)
 	buffer := make([]byte, 8, 8)
 	n := 0
 	for i := 0; i < length; i++ {
-		nb, err := bs.BitBuffer.Read(buffer)
+		nb, err := bs.Read(buffer)
+		n += nb
 		if err != nil {
 			return n, err
 		}
-		n += nb
+		if nb%8 != 0 {
+			return n, errors.New("require 8 times bits")
+		}
 		p[i] = ToByte(buffer)
 	}
 	return n, nil
-}
-
-// Read reads bits
-func (bs *BitStream) Read(p []byte) (int, error) {
-	return bs.BitBuffer.Read(p)
 }
 
 // Bits returns a slice of bs.Len() bits
