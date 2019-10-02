@@ -39,7 +39,7 @@ func TestToByte(t *testing.T) {
 
 func TestBitStream_Write(t *testing.T) {
 	bits := []uint8{1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 1, 0}
-	bs := NewBitStream()
+	bs := NewBitStream([]byte{})
 	bs.Write(bits)
 
 	if !reflect.DeepEqual(bs.Bits(), bits) {
@@ -50,7 +50,7 @@ func TestBitStream_Write(t *testing.T) {
 func TestBitStream_WriteFromBytes(t *testing.T) {
 	bytes := []byte{255, 20}
 	bits := []byte{1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 1, 0, 0}
-	bs := NewBitStream()
+	bs := NewBitStream([]byte{})
 	bs.WriteFromBytes(bytes)
 	if !reflect.DeepEqual(bs.Bits(), bits) {
 		t.Fatal("Fail")
@@ -58,7 +58,7 @@ func TestBitStream_WriteFromBytes(t *testing.T) {
 }
 
 func TestBitStream_Read(t *testing.T) {
-	bs := NewBitStream()
+	bs := NewBitStream([]byte{})
 
 	bs.Write([]byte{0, 0, 0, 0, 0, 0, 0, 1})
 	bits := make([]byte, 7)
@@ -77,7 +77,7 @@ func TestBitStream_Read(t *testing.T) {
 
 func TestBitStream_ReadAsBytes(t *testing.T) {
 	bits := []byte{1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 1, 0, 0} // 255, 20,
-	bs := NewBitStream()
+	bs := NewBitStream([]byte{})
 	bs.Write(bits)
 	bytes := make([]byte, 2)
 	bs.ReadAsBytes(bytes)
@@ -92,7 +92,7 @@ func TestBitStream_ReadAsBytes(t *testing.T) {
 		t.Fatal("Fail")
 	}
 
-	bs = NewBitStream()
+	bs = NewBitStream([]byte{})
 	bs.Write([]byte{0})
 	bytes = make([]byte, 1)
 	n, err := bs.ReadAsBytes(bytes)

@@ -11,9 +11,9 @@ type BitStream struct {
 }
 
 // NewBitStream returns BitStream
-func NewBitStream() BitStream {
+func NewBitStream(bits []byte) BitStream {
 	return BitStream{
-		BitBuffer: bytes.NewBuffer([]byte{}),
+		BitBuffer: bytes.NewBuffer(bits),
 	}
 }
 
