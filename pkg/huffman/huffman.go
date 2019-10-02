@@ -16,7 +16,6 @@ type Code struct {
 	Code   []byte
 }
 
-// buildCode returns bits
 func buildCode(order int, maxOrder int) []byte {
 	if order == 0 {
 		return []byte{0}
