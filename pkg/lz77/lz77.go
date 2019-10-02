@@ -54,7 +54,11 @@ func (en *Encoder) Read(codes []Code) (int, error) {
 		index := 0
 		length := 0
 
-		for j := en.WindowSize; j > 0; j-- {
+		jStart := en.WindowSize
+		if jStart > len(lookAhead) {
+			jStart = len(lookAhead)
+		}
+		for j := jStart; j > 0; j-- {
 			partialLookAhead := lookAhead[:j]
 			length = j
 			index = bytes.LastIndex(search, partialLookAhead)

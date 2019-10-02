@@ -16,7 +16,7 @@ var expectedCodes []Code = []Code{
 	{Dist: 3, Len: 3, Token: []byte{}},
 }
 
-func TestEncode(t *testing.T) {
+func TestEncoder(t *testing.T) {
 	encoder := NewEncoder(windowSize)
 	encoder.Write(expectedInput)
 	codes := make([]Code, 20)
@@ -28,7 +28,7 @@ func TestEncode(t *testing.T) {
 	}
 }
 
-func TestDecode(t *testing.T) {
+func TestDecoder(t *testing.T) {
 	decoder := NewDecoder()
 	decoder.Write(expectedCodes)
 	decoded := make([]byte, 20)
@@ -37,5 +37,25 @@ func TestDecode(t *testing.T) {
 
 	if !reflect.DeepEqual(actualInput, expectedInput) {
 		t.Fatal("Fail", actualInput, expectedInput)
+	}
+}
+
+func TestEncoderAndDecoder(t *testing.T) {
+	input := []byte("lorem ipsum")
+
+	encoder := NewEncoder(100)
+	encoder.Write(input)
+	codes := make([]Code, 1000)
+	n, _ := encoder.Read(codes)
+	codes = codes[:n]
+
+	decoder := NewDecoder()
+	decoder.Write(codes)
+	output := make([]byte, 1000)
+	n, _ = decoder.Read(output)
+	output = output[:n]
+
+	if !reflect.DeepEqual(input, output) {
+		t.Fatal("Fail", input, output)
 	}
 }
