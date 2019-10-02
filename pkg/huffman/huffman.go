@@ -2,8 +2,6 @@ package huffman
 
 import (
 	"sort"
-
-	"github.com/RyosukeCla/go-playground/pkg/bits"
 )
 
 // Symbol type aiueo
@@ -47,8 +45,6 @@ func Build(symbols []Symbol) []Code {
 
 	codes := make([]Code, symbolLen)
 	for i, symbol := range symbols {
-		bitStream := bits.NewBitStream()
-		bitStream.Write([]byte{0})
 		codes[i] = Code{
 			Symbol: symbol.Symbol,
 			Code:   BuildCode(i, symbolLen-1),
