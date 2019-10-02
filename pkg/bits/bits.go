@@ -80,7 +80,7 @@ func (bs *BitStream) Len() int {
 }
 
 // FromByte convert 1 byte to 8 bits
-func FromByte(oneByte byte) []uint8 {
+func FromByte(oneByte byte) []byte {
 	bits := make([]byte, 8, 8)
 	for i := byte(7); i > 0; i-- {
 		bit := (oneByte >> i) & 1
@@ -91,7 +91,7 @@ func FromByte(oneByte byte) []uint8 {
 }
 
 // ToByte convert 8 bits to 1 byte
-func ToByte(bits []uint8) byte {
+func ToByte(bits []byte) byte {
 	var oneByte byte = 0
 	for _, bit := range bits {
 		oneByte = (oneByte << 1) + bit
