@@ -11,6 +11,9 @@ lz77:
 runlength:
 	cd ./pkg/runlength; go test
 
+adt:
+	cd ./pkg/adt; go test
+
 sample:
 	cd ./pkg/sample; go test
 
