@@ -1,25 +1,40 @@
 package adt
 
-// MaxHeap is max heap
-type MaxHeap struct {
-	array []float32
+type compare func(a float32, b float32) bool
+
+// Heap is a heap
+type Heap struct {
+	array   []float32
+	compare compare
 }
 
-// NewMaxHeap returns max heap
-func NewMaxHeap(cap int) MaxHeap {
+// NewHeap returns heap. heapType is "max" or "min"
+func NewHeap(heapType string, cap int) Heap {
 	array := make([]float32, 0, cap)
-	return MaxHeap{
-		array: array,
+
+	var compare compare
+	if heapType == "min" {
+		compare = func(a float32, b float32) bool {
+			return a < b
+		}
+	} else {
+		compare = func(a float32, b float32) bool {
+			return a > b
+		}
+	}
+	return Heap{
+		array:   array,
+		compare: compare,
 	}
 }
 
 // Insert inserts element with keeping max heap property
-func (h *MaxHeap) Insert(element float32) {
+func (h *Heap) Insert(element float32) {
 	h.array = append(h.array, element)
 	current := len(h.array) - 1
 	for {
 		parent := parentIndex(current)
-		if h.array[current] > h.array[parent] {
+		if h.compare(h.array[current], h.array[parent]) {
 			h.array[current], h.array[parent] = h.array[parent], h.array[current]
 			current = parent
 		} else {
@@ -29,49 +44,12 @@ func (h *MaxHeap) Insert(element float32) {
 }
 
 // Extract extracts max element with keeping max heap property
-func (h *MaxHeap) Extract() float32 {
-	max := h.array[0]
-	maxHeapify(h.array, 0, len(h.array))
+func (h *Heap) Extract() float32 {
+	first := h.array[0]
+	heapify(h.array, h.compare, 0, len(h.array))
 	h.array[0] = h.array[len(h.array)-1]
-	h.array = h.array[:len(h.array)-2]
-	return max
-}
-
-// MinHeap is min heap
-type MinHeap struct {
-	array []float32
-}
-
-// NewMinHeap returns min heap
-func NewMinHeap(cap int) MinHeap {
-	array := make([]float32, 0, cap)
-	return MinHeap{
-		array: array,
-	}
-}
-
-// Insert inserts element with keeping min heap property
-func (h *MinHeap) Insert(element float32) {
-	h.array = append(h.array, element)
-	current := len(h.array) - 1
-	for {
-		parent := parentIndex(current)
-		if h.array[current] < h.array[parent] {
-			h.array[current], h.array[parent] = h.array[parent], h.array[current]
-			current = parent
-		} else {
-			break
-		}
-	}
-}
-
-// Extract extracts min element with keeping min heap property
-func (h *MinHeap) Extract() float32 {
-	min := h.array[0]
-	minHeapify(h.array, 0, len(h.array))
-	h.array[0] = h.array[len(h.array)-1]
-	h.array = h.array[:len(h.array)-2]
-	return min
+	h.array = h.array[:len(h.array)-2] // remove first
+	return first
 }
 
 func parentIndex(i int) int {
@@ -86,18 +64,18 @@ func rightChildIndex(i int) int {
 	return 2*i + 2
 }
 
-func maxHeapify(arr []float32, i int, size int) {
+func heapify(arr []float32, compare compare, i int, size int) {
 	left := leftChildIndex(i)
 	right := rightChildIndex(i)
 	largest := i
 
 	// If left child is larger than root
-	if left < size && arr[left] > arr[largest] {
+	if left < size && compare(arr[left], arr[largest]) {
 		largest = left
 	}
 
 	// If right child is larger than largest so far
-	if right < size && arr[right] > arr[largest] {
+	if right < size && compare(arr[right], arr[largest]) {
 		largest = right
 	}
 
@@ -107,31 +85,6 @@ func maxHeapify(arr []float32, i int, size int) {
 		arr[i], arr[largest] = arr[largest], arr[i]
 
 		// Recursively heapify the affected sub-tree
-		maxHeapify(arr, largest, size)
-	}
-}
-
-func minHeapify(arr []float32, i int, size int) {
-	left := leftChildIndex(i)
-	right := rightChildIndex(i)
-	largest := i
-
-	// If left child is larger than root
-	if left < size && arr[left] < arr[largest] {
-		largest = left
-	}
-
-	// If right child is larger than largest so far
-	if right < size && arr[right] < arr[largest] {
-		largest = right
-	}
-
-	// If largest is not root
-	if largest != i {
-		// swap
-		arr[i], arr[largest] = arr[largest], arr[i]
-
-		// Recursively heapify the affected sub-tree
-		minHeapify(arr, largest, size)
+		heapify(arr, compare, largest, size)
 	}
 }
