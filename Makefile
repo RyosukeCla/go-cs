@@ -12,7 +12,9 @@ runlength:
 	cd ./pkg/runlength; go test
 
 adt:
-	cd ./pkg/adt; go test
+	cd ./pkg/adt/bstree; go test
+	cd ./pkg/adt/treap; go test
+	cd ./pkg/adt/heap; go test
 
 sample:
 	cd ./pkg/sample; go test
