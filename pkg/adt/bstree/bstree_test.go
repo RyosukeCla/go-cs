@@ -1,4 +1,4 @@
-package adt
+package bstree
 
 import (
 	"fmt"

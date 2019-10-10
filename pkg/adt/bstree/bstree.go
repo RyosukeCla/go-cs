@@ -1,4 +1,4 @@
-package adt
+package bstree
 
 // BSTree is binary search tree
 type BSTree struct {

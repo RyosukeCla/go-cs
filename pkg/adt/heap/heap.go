@@ -1,4 +1,4 @@
-package adt
+package heap
 
 type compare func(a float32, b float32) bool
 
