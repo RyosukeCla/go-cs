@@ -1,7 +1,6 @@
 package treap
 
 import (
-	"fmt"
 	"testing"
 )
 
@@ -12,8 +11,10 @@ func TestTreap(t *testing.T) {
 	treap.Insert(3)
 	treap.Insert(4)
 	treap.Insert(5)
-	fmt.Println(treap)
-	fmt.Println(treap.root.key, treap.root.left.key, treap.root.right.key)
+
+	if treap.Search(5) == false {
+		t.Fatal("error")
+	}
 }
 
 func TestTreap_Remove(t *testing.T) {
@@ -26,8 +27,15 @@ func TestTreap_Remove(t *testing.T) {
 	treap.Remove(3)
 	treap.Remove(2)
 
-	fmt.Println("addf-1")
-	fmt.Println("asdf-2", treap.Search(2), treap.Search(4))
-	fmt.Println("asdf-3", treap.Search(3), treap.Search(5))
-	fmt.Println("asdf-4", treap.Search(3), treap.Search(100))
+	if treap.Search(3) == true {
+		t.Fatal("error")
+	}
+
+	if treap.Search(2) == true {
+		t.Fatal("error")
+	}
+
+	if treap.Search(5) == false {
+		t.Fatal("error")
+	}
 }
