@@ -14,10 +14,12 @@ type node struct {
 	right *node
 }
 
+// NewTreap return Treap
 func NewTreap() Treap {
 	return Treap{}
 }
 
+// Insert inserts node
 func (t *Treap) Insert(key int) {
 	t.root = insert(t.root, key)
 }
