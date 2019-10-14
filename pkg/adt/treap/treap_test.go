@@ -24,6 +24,15 @@ func TestTreap_Remove(t *testing.T) {
 	treap.Insert(3)
 	treap.Insert(4)
 	treap.Insert(5)
+
+	if treap.Search(3) == false {
+		t.Fatal("error")
+	}
+
+	if treap.Search(2) == false {
+		t.Fatal("error")
+	}
+
 	treap.Remove(3)
 	treap.Remove(2)
 
