@@ -1,6 +1,8 @@
 package treap
 
-import "math/rand"
+import (
+	"math/rand"
+)
 
 // Treap is treap
 type Treap struct {
@@ -31,7 +33,7 @@ func (t *Treap) Search(key int) bool {
 
 // Remove removes node
 func (t *Treap) Remove(key int) {
-	remove(t.root, key)
+	t.root = remove(t.root, key)
 }
 
 func insert(root *node, key int) *node {
