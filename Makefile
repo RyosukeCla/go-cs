@@ -2,14 +2,10 @@
 bits:
 	cd ./pkg/bits; go test
 
-huffman:
-	cd ./pkg/huffman; go test
-
-lz77:
-	cd ./pkg/lz77; go test
-
-runlength:
-	cd ./pkg/runlength; go test
+coding:
+	cd ./pkg/coding/huffman; go test
+	cd ./pkg/coding/lz77; go test
+	cd ./pkg/coding/runlength; go test
 
 adt:
 	cd ./pkg/adt/bstree; go test
