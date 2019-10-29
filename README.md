@@ -36,3 +36,5 @@
 ## References
 - https://en.wikipedia.org/wiki/List_of_data_structures
 - https://en.wikipedia.org/wiki/List_of_algorithms
+- https://en.wikipedia.org/wiki/List_of_algorithm_general_topics
+- https://en.wikipedia.org/wiki/List_of_terms_relating_to_algorithms_and_data_structures
