@@ -46,9 +46,9 @@ func (h *Heap) Insert(element int) {
 // Extract extracts max element with keeping max heap property
 func (h *Heap) Extract() int {
 	first := h.array[0]
-	heapify(h.array, h.compare, 0, len(h.array))
 	h.array[0] = h.array[len(h.array)-1]
-	h.array = h.array[:len(h.array)-2] // remove first
+	h.array = h.array[:len(h.array)-1] // remove first
+	heapify(h.array, h.compare, 0, len(h.array))
 	return first
 }
 
