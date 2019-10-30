@@ -1,3 +1,3 @@
-module github.com/RyosukeCla/go-playground/pkg/adt/heap
+module github.com/RyosukeCla/go-cs/pkg/adt/heap
 
 go 1.12

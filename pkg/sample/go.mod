@@ -1,3 +1,3 @@
-module github.com/RyosukeCla/go-playground/pkg/sample
+module github.com/RyosukeCla/go-cs/pkg/sample
 
 go 1.12

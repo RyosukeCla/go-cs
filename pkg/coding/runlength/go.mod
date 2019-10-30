@@ -1,3 +1,3 @@
-module github.com/RyosukeCla/go-playground/pkg/runlength
+module github.com/RyosukeCla/go-cs/pkg/runlength
 
 go 1.12

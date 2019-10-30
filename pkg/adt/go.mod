@@ -1,3 +1,3 @@
-module github.com/RyosukeCla/go-playground/pkg/adt
+module github.com/RyosukeCla/go-cs/pkg/adt
 
 go 1.12
