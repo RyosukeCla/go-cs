@@ -11,6 +11,7 @@
 
 ## Sort
 - [x] bubble sort
+- [x] bucket sort
 - [ ] quick sort
 - [ ] merge sort
 
