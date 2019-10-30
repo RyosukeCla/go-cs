@@ -1,24 +1,24 @@
 package heap
 
-type compare func(a float32, b float32) bool
+type compare func(a int, b int) bool
 
 // Heap is a heap
 type Heap struct {
-	array   []float32
+	array   []int
 	compare compare
 }
 
 // NewHeap returns heap. heapType is "max" or "min"
 func NewHeap(heapType string, cap int) Heap {
-	array := make([]float32, 0, cap)
+	array := make([]int, 0, cap)
 
 	var compare compare
 	if heapType == "min" {
-		compare = func(a float32, b float32) bool {
+		compare = func(a int, b int) bool {
 			return a < b
 		}
 	} else {
-		compare = func(a float32, b float32) bool {
+		compare = func(a int, b int) bool {
 			return a > b
 		}
 	}
@@ -29,7 +29,7 @@ func NewHeap(heapType string, cap int) Heap {
 }
 
 // Insert inserts element with keeping max heap property
-func (h *Heap) Insert(element float32) {
+func (h *Heap) Insert(element int) {
 	h.array = append(h.array, element)
 	current := len(h.array) - 1
 	for {
@@ -44,7 +44,7 @@ func (h *Heap) Insert(element float32) {
 }
 
 // Extract extracts max element with keeping max heap property
-func (h *Heap) Extract() float32 {
+func (h *Heap) Extract() int {
 	first := h.array[0]
 	heapify(h.array, h.compare, 0, len(h.array))
 	h.array[0] = h.array[len(h.array)-1]
@@ -64,7 +64,7 @@ func rightChildIndex(i int) int {
 	return 2*i + 2
 }
 
-func heapify(arr []float32, compare compare, i int, size int) {
+func heapify(arr []int, compare compare, i int, size int) {
 	left := leftChildIndex(i)
 	right := rightChildIndex(i)
 	largest := i
