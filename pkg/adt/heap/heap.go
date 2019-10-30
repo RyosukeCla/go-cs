@@ -43,7 +43,7 @@ func (h *Heap) Insert(element int) {
 	}
 }
 
-// Extract extracts max element with keeping max heap property
+// Extract extracts max/min element with keeping max/min heap property
 func (h *Heap) Extract() int {
 	first := h.array[0]
 	h.array[0] = h.array[len(h.array)-1]
