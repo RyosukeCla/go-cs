@@ -15,6 +15,7 @@ adt:
 sort:
 	cd ./pkg/sort/bubble; go test
 	cd ./pkg/sort/bucket; go test
+	cd ./pkg/sort/heap; go test
 	
 sample:
 	cd ./pkg/sample; go test
