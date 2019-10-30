@@ -10,7 +10,7 @@
 - [ ] Ricart-Agrawala Algorithm
 
 ## Sort
-- [ ] bubble sort
+- [x] bubble sort
 - [ ] quick sort
 - [ ] merge sort
 

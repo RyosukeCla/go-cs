@@ -12,6 +12,9 @@ adt:
 	cd ./pkg/adt/treap; go test
 	cd ./pkg/adt/heap; go test
 
+sort:
+	cd ./pkg/sort/bubble; go test
+	
 sample:
 	cd ./pkg/sample; go test
 
