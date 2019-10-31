@@ -14,7 +14,8 @@
 - [x] bucket sort
 - [x] heap sort
 - [x] merge sort
-- [ ] quick sort
+- [x] quick sort
+- [ ] tim sort
 
 ## Search
 - [ ] Binary Search
