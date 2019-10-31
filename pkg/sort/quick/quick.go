@@ -46,7 +46,14 @@ func partition(array []int, left int, right int) int {
 Quick Sort Algorithm
  
 Suppose,
-  - subarrays of array: A1, A2, ..., An
+  - array A
+  
+By adopting partitioning, we get two subarrays A1, A2 which fulfills
+  - a_1i <= a_2j for all i, j (since a_1i <= pivot <= a_2j)
+In the same way, we split subarrays into two arrays until end.
+Then we get a_ik <= a_jl for all i < j, k < l.
+Thus a_i <= a_j for all i < j where a_i,j in A,
+which is the result of sort.
 
 By adopting partitioning, we get a_ik < a_il and pivot_i < pivot_j
 where for all (k, l)'th elements in (i, j)'th arrays of subarrays.
