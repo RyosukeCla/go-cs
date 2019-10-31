@@ -9,7 +9,7 @@
 - [ ] Raymond's Algorithm
 - [ ] Ricart-Agrawala Algorithm
 
-## Sort
+### Sort
 - [x] bubble sort
 - [x] bucket sort
 - [x] heap sort
@@ -17,12 +17,12 @@
 - [x] quick sort
 - [ ] tim sort
 
-## Search
+### Search
 - [ ] Binary Search
 - [ ] Jump Search
 - [ ] Linear Search
 
-## Coding
+### Coding
 - [x] lz77
 - [x] huffman
 - [x] runlength
@@ -34,7 +34,7 @@
 - [x] heap
 - [x] treap
 
-### Etc
+## Etc
 - [x] bits
 
 ## References
