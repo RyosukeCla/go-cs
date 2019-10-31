@@ -31,6 +31,7 @@
 
 ### Trees
 - [x] binary search tree
+- [x] heap
 - [x] treap
 
 ### Etc
