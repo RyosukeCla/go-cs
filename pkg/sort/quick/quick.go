@@ -1,5 +1,28 @@
 package quick
 
+/*
+
+Partitioning Algorithm
+
+Supporse,
+  - array[left] = pivot
+  - array[left+1:i] < pivot
+  - array[i:j] >= pivot
+  - where j >= i >= left+1
+
+If array[j] < pivot and swap array[j] and array[i],
+Then,
+  - array[left+1:i+1] < pivot
+  - array[i+1:j+1] >= pivot
+And update i <- i+1, j <- j+1 remaining these properties
+Then do until j=right
+
+Lastly, by swapping array[left] and array[i+1], we get
+  - array[left:i] < pivot
+  - array[i:right] >= pivot
+  
+ */
+
 // returns partition index and partition into >= pivot and < pivot.
 func partition(array []int, left int, right int) int {
 	pivot := array[left] // select first element as pivot
@@ -19,6 +42,19 @@ func partition(array []int, left int, right int) int {
 	return i - 1
 }
 
+/*
+Quick Sort Algorithm
+ 
+Suppose,
+  - subarrays of array: A1, A2, ..., An
+
+By adopting partitioning, we get a_ik < a_il and pivot_i < pivot_j
+where for all (k, l)'th elements in (i, j)'th arrays of subarrays.
+Since a_i0 < pivot_i < a_iN < pivot_i+1 where N is length of a_i array,
+we get a_ik < a_jl for all i, j, k, l. 
+
+
+ */
 func quickSort(array []int, left int, right int) {
 	if left < right {
 		partitionIndex := partition(array, left, right)
