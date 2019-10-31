@@ -17,6 +17,7 @@ sort:
 	cd ./pkg/sort/bucket; go test
 	cd ./pkg/sort/heap; go test
 	cd ./pkg/sort/merge; go test
+	cd ./pkg/sort/quick; go test
 	
 sample:
 	cd ./pkg/sample; go test
