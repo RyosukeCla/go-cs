@@ -13,8 +13,8 @@
 - [x] bubble sort
 - [x] bucket sort
 - [x] heap sort
+- [x] merge sort
 - [ ] quick sort
-- [ ] merge sort
 
 ## Search
 - [ ] Binary Search
