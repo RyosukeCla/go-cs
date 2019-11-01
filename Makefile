@@ -19,6 +19,7 @@ sort:
 	cd ./pkg/sort/merge; go test
 	cd ./pkg/sort/quick; go test
 	cd ./pkg/sort/insertion; go test
+	cd ./pkg/sort/intro; go test
 	
 sample:
 	cd ./pkg/sample; go test

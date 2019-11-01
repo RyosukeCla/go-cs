@@ -16,6 +16,7 @@
 - [x] merge sort
 - [x] quick sort
 - [x] insertion sort
+- [x] introspective sort
 - [ ] tim sort
 
 ### Search
