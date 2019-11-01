@@ -20,7 +20,16 @@ sort:
 	cd ./pkg/sort/quick; go test
 	cd ./pkg/sort/insertion; go test
 	cd ./pkg/sort/intro; go test
-	
+
+sort-bench:
+	cd ./pkg/sort/bubble; go test -bench . -benchmem
+	cd ./pkg/sort/bucket; go test -bench . -benchmem
+	cd ./pkg/sort/heap; go test -bench . -benchmem
+	cd ./pkg/sort/merge; go test -bench . -benchmem
+	cd ./pkg/sort/quick; go test -bench . -benchmem
+	cd ./pkg/sort/insertion; go test -bench . -benchmem
+	cd ./pkg/sort/intro; go test -bench . -benchmem
+
 sample:
 	cd ./pkg/sample; go test
 
