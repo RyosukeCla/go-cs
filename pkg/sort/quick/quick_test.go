@@ -1,13 +1,15 @@
 package quick
 
 import (
+	"math/rand"
 	"reflect"
+	"sort"
 	"testing"
 )
 
 func TestPartition_1(t *testing.T) {
 	array := []int{3, 2, 1, 5, 4, 6}
-	actual := partition(array, 0, len(array)-1)
+	actual := Partition(array, 0, len(array)-1)
 	expected := 2
 	if actual != expected {
 		t.Fatalf("Error: actual %d, expected %d", actual, expected)
@@ -20,7 +22,7 @@ func TestPartition_1(t *testing.T) {
 
 func TestPartition_2(t *testing.T) {
 	array := []int{2, 4, 1, 5}
-	actual := partition(array, 0, len(array)-1)
+	actual := Partition(array, 0, len(array)-1)
 	expected := 1
 	if actual != expected {
 		t.Fatalf("Error: actual %d, expected %d", actual, expected)
@@ -39,5 +41,24 @@ func TestSort(t *testing.T) {
 	expected := []int{0, 1, 3, 4, 4, 9, 53, 102}
 	if !reflect.DeepEqual(actual, expected) {
 		t.Fatal("Error", actual)
+	}
+}
+
+func TestSort_2(t *testing.T) {
+	N := 1000
+	expected := make([]int, N)
+	actual := make([]int, N)
+
+	for i := 0; i < N; i++ {
+		random := rand.Intn(10000)
+		expected[i] = random
+		actual[i] = random
+	}
+
+	sort.Slice(expected, func(i, j int) bool { return expected[i] < expected[j] })
+	Sort(actual)
+
+	if !reflect.DeepEqual(actual, expected) {
+		t.Fatal("Error")
 	}
 }
