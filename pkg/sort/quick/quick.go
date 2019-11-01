@@ -23,8 +23,8 @@ Lastly, by swapping array[left] and array[i+1], we get
 
 */
 
-// returns partition index and partition into >= pivot and < pivot.
-func partition(array []int, left int, right int) int {
+// Partition returns partition index and partition into >= pivot and < pivot.
+func Partition(array []int, left int, right int) int {
 	pivot := array[left] // select first element as pivot
 	i := left + 1
 
@@ -63,7 +63,7 @@ we get a_ik < a_jl for all i, j, k, l.
 */
 func quickSort(array []int, left int, right int) {
 	if left < right {
-		partitionIndex := partition(array, left, right)
+		partitionIndex := Partition(array, left, right)
 		quickSort(array, left, partitionIndex-1)
 		quickSort(array, partitionIndex+1, right)
 	}
