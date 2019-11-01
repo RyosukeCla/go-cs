@@ -15,6 +15,7 @@
 - [x] heap sort
 - [x] merge sort
 - [x] quick sort
+- [x] insertion sort
 - [ ] tim sort
 
 ### Search
