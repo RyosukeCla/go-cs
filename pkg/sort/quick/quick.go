@@ -20,8 +20,8 @@ Then do until j=right
 Lastly, by swapping array[left] and array[i+1], we get
   - array[left:i] < pivot
   - array[i:right] >= pivot
-  
- */
+
+*/
 
 // returns partition index and partition into >= pivot and < pivot.
 func partition(array []int, left int, right int) int {
@@ -44,10 +44,10 @@ func partition(array []int, left int, right int) int {
 
 /*
 Quick Sort Algorithm
- 
+
 Suppose,
   - array A
-  
+
 By adopting partitioning, we get two subarrays A1, A2 which fulfills
   - a_1i <= a_2j for all i, j (since a_1i <= pivot <= a_2j)
 In the same way, we split subarrays into two arrays until end.
@@ -58,10 +58,9 @@ which is the result of sort.
 By adopting partitioning, we get a_ik < a_il and pivot_i < pivot_j
 where for all (k, l)'th elements in (i, j)'th arrays of subarrays.
 Since a_i0 < pivot_i < a_iN < pivot_i+1 where N is length of a_i array,
-we get a_ik < a_jl for all i, j, k, l. 
+we get a_ik < a_jl for all i, j, k, l.
 
-
- */
+*/
 func quickSort(array []int, left int, right int) {
 	if left < right {
 		partitionIndex := partition(array, left, right)
