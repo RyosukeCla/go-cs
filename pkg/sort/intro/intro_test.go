@@ -47,18 +47,3 @@ func TestSort_2(t *testing.T) {
 		}
 	}
 }
-
-func BenchmarkSort(b *testing.B) {
-	N := b.N
-	expected := make([]int, N)
-	actual := make([]int, N)
-
-	for i := 0; i < N; i++ {
-		random := rand.Intn(10000)
-		expected[i] = random
-		actual[i] = random
-	}
-
-	b.ResetTimer()
-	Sort(actual)
-}
