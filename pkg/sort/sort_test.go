@@ -39,9 +39,9 @@ type sortAlgorithms struct {
 
 func BenchmarkSorts(b *testing.B) {
 	sortAlgorithms := []sortAlgorithms{
-		{name: "Insertion", sort: insertion.Sort},
-		{name: "Heap", sort: heap.Sort},
 		{name: "Bubble", sort: bubble.Sort},
+		{name: "Heap", sort: heap.Sort},
+		{name: "Insertion", sort: insertion.Sort},
 		{name: "Quick", sort: quick.Sort},
 		{name: "Merge", sort: merge.Sort},
 		{name: "Intro", sort: intro.Sort},
