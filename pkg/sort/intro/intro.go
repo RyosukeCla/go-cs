@@ -24,6 +24,6 @@ func introSort(array []int, depthLimit int) {
 // Sort sorts an array with introspective sort algorithm
 func Sort(array []int) {
 	n := float64(len(array))
-	depthLimit := 2 * int(math.Floor(math.Log10(n)))
+	depthLimit := 2 * int(math.Floor(math.Log2(n)))
 	introSort(array, depthLimit)
 }
