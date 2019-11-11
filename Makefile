@@ -24,6 +24,9 @@ sort:
 bench-sort:
 	cd ./pkg/sort; go test -bench . -benchmem
 
+compare-quick-with-merge:
+	cd ./pkg/sort; go test
+
 sample:
 	cd ./pkg/sample; go test
 
