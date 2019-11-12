@@ -20,9 +20,9 @@
 - [ ] tim sort
 
 ### Search
+- [x] Linear Search
 - [ ] Binary Search
 - [ ] Jump Search
-- [ ] Linear Search
 
 ### Coding
 - [x] lz77

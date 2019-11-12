@@ -27,6 +27,9 @@ bench-sort:
 compare-quick-with-merge:
 	cd ./pkg/sort; go test
 
+search:
+	cd ./pkg/search/linear; go test;
+
 sample:
 	cd ./pkg/sample; go test
 
