@@ -21,7 +21,7 @@
 
 ### Search
 - [x] Linear Search
-- [ ] Binary Search
+- [x] Binary Search
 - [ ] Jump Search
 
 ### Coding
