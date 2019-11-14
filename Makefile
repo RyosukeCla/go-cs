@@ -29,6 +29,7 @@ compare-quick-with-merge:
 
 search:
 	cd ./pkg/search/linear; go test;
+	cd ./pkg/search/binary; go test;
 
 sample:
 	cd ./pkg/sample; go test
