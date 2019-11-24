@@ -34,6 +34,7 @@
 basic functions
 - [x] factorial
 - [x] absolute
+- [ ] power
 - [ ] exponential
 - [ ] logarithm
 - [ ] sin
