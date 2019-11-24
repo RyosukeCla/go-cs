@@ -35,7 +35,7 @@ basic functions
 - [x] factorial
 - [x] absolute
 
-algorithms
+numerical calculation
 - [x] newton
 
 
