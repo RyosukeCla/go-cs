@@ -33,9 +33,10 @@
 
 basic functions
 - [x] factorial
+- [x] absolute
 
 algorithms
-- [ ] newton
+- [x] newton
 
 
 ## Data structures

@@ -34,6 +34,7 @@ search:
 
 math:
 	cd ./pkg/math/basic; go test;
+	cd ./pkg/math/newton; go test;
 
 
 sample:
