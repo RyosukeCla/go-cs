@@ -55,6 +55,9 @@ numerical calculation
 - [ ] mersenne twister
 - [ ] Blum-Blum-Shub
 
+### Version solving
+- [ ] PubGrub
+
 ## Data structures
 
 ### Trees
