@@ -7,6 +7,7 @@ import (
 )
 
 func TestSolve(t *testing.T) {
+	// solve sqrt(2)
 	actual := Solve(&Args{
 		F: func(x float64) float64 {
 			return x*x - 2
