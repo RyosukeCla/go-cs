@@ -1,7 +1,6 @@
 package newton
 
 import (
-	"fmt"
 	"testing"
 
 	"github.com/RyosukeCla/go-cs/pkg/math/basic"
@@ -20,7 +19,6 @@ func TestSolve(t *testing.T) {
 	})
 
 	expected := 1.414213562373095 // sqrt(2)
-	fmt.Println(actual)
 	if basic.Abs(actual-expected) > 0.00000002 {
 		t.Fatal("Error")
 	}
