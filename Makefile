@@ -32,6 +32,10 @@ search:
 	cd ./pkg/search/binary; go test;
 	cd ./pkg/search/jump; go test;
 
+math:
+	cd ./pkg/math/basic; go test;
+
+
 sample:
 	cd ./pkg/sample; go test
 

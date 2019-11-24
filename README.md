@@ -29,6 +29,15 @@
 - [x] huffman
 - [x] runlength
 
+### Math
+
+basic functions
+- [x] factorial
+
+algorithms
+- [ ] newton
+
+
 ## Data structures
 
 ### Trees
