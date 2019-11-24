@@ -28,6 +28,8 @@
 - [x] lz77
 - [x] huffman
 - [x] runlength
+- [ ] lz78
+- [ ] lzw
 
 ### Math
 
