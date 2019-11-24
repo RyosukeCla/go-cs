@@ -73,6 +73,9 @@ numerical calculation
 ### Version solving
 - [ ] PubGrub
 
+### Cryptology
+- [ ] enigma
+
 ## Data structures
 
 ### Trees
