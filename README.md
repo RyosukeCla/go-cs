@@ -34,6 +34,11 @@
 basic functions
 - [x] factorial
 - [x] absolute
+- [ ] exponential
+- [ ] logarithm
+- [ ] sin
+- [ ] cos
+- [ ] tan
 
 numerical calculation
 - [x] newton
