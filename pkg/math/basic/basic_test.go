@@ -15,3 +15,13 @@ func TestFactorial(t *testing.T) {
 		t.Fatal("Error")
 	}
 }
+
+func TestAbs(t *testing.T) {
+	if Abs(5) != 5 {
+		t.Fatal("Error")
+	}
+
+	if Abs(-5) != 5 {
+		t.Fatal("Error")
+	}
+}
