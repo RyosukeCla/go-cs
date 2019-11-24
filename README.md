@@ -41,6 +41,14 @@ numerical calculation
 - [ ] BFGS: Broyden–Fletcher–Goldfarb–Shanno
 - [ ] gaussian elimination
 
+### Random
+- [ ] midsquare
+- [ ] linear congruential generators
+- [ ] linear feedback shift register
+- [ ] xorshift
+- [ ] mersenne twister
+- [ ] Blum-Blum-Shub
+
 ## Data structures
 
 ### Trees
