@@ -22,7 +22,7 @@
 ### Search
 - [x] Linear Search
 - [x] Binary Search
-- [ ] Jump Search
+- [x] Jump Search
 
 ### Coding
 - [x] lz77
