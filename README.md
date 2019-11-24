@@ -37,7 +37,9 @@ basic functions
 
 numerical calculation
 - [x] newton
-
+- [ ] quasi newton
+- [ ] BFGS: Broyden–Fletcher–Goldfarb–Shanno
+- [ ] gaussian elimination
 
 ## Data structures
 
