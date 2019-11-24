@@ -1,10 +1,12 @@
 package binary
 
-import "testing"
+import (
+	"testing"
+)
 
 func TestSearch(t *testing.T) {
-	array := []int{100, 13, 34, 1, 5, 999, 65}
-	if Search(array, 1) != 3 {
+	array := []int{1, 2, 3, 4, 5, 6, 7, 8, 9}
+	if Search(array, 3) != 2 {
 		t.Fatal("error")
 	}
 }
