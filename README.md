@@ -48,6 +48,19 @@ numerical calculation
 - [ ] quasi newton
 - [ ] BFGS: Broyden–Fletcher–Goldfarb–Shanno
 - [ ] gaussian elimination
+- [ ] euler
+- [ ] Leap-Frog
+- [ ] Runge–Kutta
+
+### Optimization
+- [ ] Simulated Annealing
+- [ ] genetic algorithm
+- [ ] ant colony optimization
+
+### Statistics
+- [ ] Metropolis-Hastings
+- [ ] Hamiltonian MC
+- [ ] Gibbs sampling
 
 ### Random
 - [ ] midsquare
