@@ -77,6 +77,17 @@ numerical calculation
 ### Cryptology
 - [ ] enigma
 
+### Load balancing
+- [ ] round robin
+- [ ] weighted round robin
+- [ ] least connection
+- [ ] Agent-Based Adaptive Load Balancing
+- [ ] Chained Failover
+- [ ] Weighted Response Time
+- [ ] Source IP Hash
+- [ ] consistent-hashing
+- [ ] bounded loads
+
 ## Data structures
 
 ### Trees
