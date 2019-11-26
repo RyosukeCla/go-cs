@@ -36,6 +36,7 @@
 basic functions
 - [x] factorial
 - [x] absolute
+- [x] square
 - [ ] power
 - [ ] exponential
 - [ ] logarithm
@@ -62,7 +63,7 @@ numerical calculation
 - [ ] Hamiltonian MC
 - [ ] Gibbs sampling
 
-### Random
+### Pseudorandom
 - [ ] midsquare
 - [ ] linear congruential generators
 - [ ] linear feedback shift register

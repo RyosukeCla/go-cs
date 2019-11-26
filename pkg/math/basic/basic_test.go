@@ -25,3 +25,9 @@ func TestAbs(t *testing.T) {
 		t.Fatal("Error")
 	}
 }
+
+func TestSquare(t *testing.T) {
+	if Square(5.0) != 25.0 {
+		t.Fatal("Error")
+	}
+}

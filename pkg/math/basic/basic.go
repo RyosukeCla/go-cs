@@ -12,9 +12,13 @@ func Factorial(n int) int {
 func Abs(x float64) float64 {
 	if x >= 0 {
 		return x
-	} else {
-		return -x
 	}
+	return -x
+}
+
+// Square returs square of x
+func Square(x float64) float64 {
+	return x * x
 }
 
 // Power returns x^y, and y is integer
