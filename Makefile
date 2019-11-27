@@ -1,18 +1,35 @@
+test-all:
+	make test-bits
+	make test-coding
+	make test-adt
+	make test-sort
+	make test-search
+	make test-math
+	make test-hashtable
+	make test-hash
+	make test-rand
 
-bits:
+bench-all:
+	make bench-sort
+
+compare-all:
+	make compare-quick-with-merge
+
+# tests
+test-bits:
 	cd ./pkg/bits; go test
 
-coding:
+test-coding:
 	cd ./pkg/coding/huffman; go test
 	cd ./pkg/coding/lz77; go test
 	cd ./pkg/coding/runlength; go test
 
-adt:
+test-adt:
 	cd ./pkg/adt/bstree; go test
 	cd ./pkg/adt/treap; go test
 	cd ./pkg/adt/heap; go test
 
-sort:
+test-sort:
 	cd ./pkg/sort/bubble; go test
 	cd ./pkg/sort/bucket; go test
 	cd ./pkg/sort/heap; go test
@@ -21,32 +38,33 @@ sort:
 	cd ./pkg/sort/insertion; go test
 	cd ./pkg/sort/intro; go test
 
-bench-sort:
-	cd ./pkg/sort; go test -bench . -benchmem
-
-compare-quick-with-merge:
-	cd ./pkg/sort; go test
-
-search:
+test-search:
 	cd ./pkg/search/linear; go test;
 	cd ./pkg/search/binary; go test;
 	cd ./pkg/search/jump; go test;
 
-math:
+test-math:
 	cd ./pkg/math/basic; go test;
 	cd ./pkg/math/newton; go test;
 
-hashtable:
+test-hashtable:
 	cd ./pkg/hashtable/basic; go test;
 
-hash:
+test-hash:
 	cd ./pkg/hash/fnv; go test;
 
-rand:
+test-rand:
 	cd ./pkg/rand/midsquare; go test;
 
+# benches
+bench-sort:
+	cd ./pkg/sort; go test -bench . -benchmem
 
+# comparisons
+compare-quick-with-merge:
+	cd ./pkg/sort; go test
+
+# etc
 sample:
 	cd ./pkg/sample; go test
 
-.PHONY: bitstream huffman sample

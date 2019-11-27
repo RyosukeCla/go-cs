@@ -7,11 +7,11 @@ import (
 // HashTable ...
 type HashTable struct {
 	entries []interface{}
-	maxSize int
+	maxSize uint
 }
 
 // NewHashTable returns hash table
-func NewHashTable(maxSize int) HashTable {
+func NewHashTable(maxSize uint) HashTable {
 	entries := make([]interface{}, maxSize, maxSize)
 	return HashTable{
 		entries: entries,
@@ -19,13 +19,9 @@ func NewHashTable(maxSize int) HashTable {
 	}
 }
 
-func hashFunction(value string) int {
+func hashFunction(value string) uint {
 	bytes := []byte(value)
-	x := fnv.Hash(bytes)
-	if x >= 0 {
-		return x
-	}
-	return -x
+	return fnv.Hash(bytes)
 }
 
 // Get ...
