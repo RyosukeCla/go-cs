@@ -1,6 +1,8 @@
 package robinhood
 
-import "github.com/RyosukeCla/go-cs/pkg/hash/fnv"
+import (
+	"github.com/RyosukeCla/go-cs/pkg/hash/fnv"
+)
 
 // HashTable ...
 type HashTable struct {
@@ -19,7 +21,11 @@ func NewHashTable(maxSize int) HashTable {
 
 func hashFunction(value string) int {
 	bytes := []byte(value)
-	return fnv.Hash(bytes)
+	x := fnv.Hash(bytes)
+	if x >= 0 {
+		return x
+	}
+	return -x
 }
 
 // Get ...

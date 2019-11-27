@@ -1,10 +1,10 @@
 package fnv
 
 // BASIS ...
-const BASIS = 2166136261
+const BASIS int = 2166136261
 
 // PRIME ...
-const PRIME = 1099511628211
+const PRIME int = 16777619
 
 // Hash ...
 func Hash(bytes []byte) int {
