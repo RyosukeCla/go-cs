@@ -85,8 +85,9 @@ numerical calculation
 - [ ] Chained Failover
 - [ ] Weighted Response Time
 - [ ] Source IP Hash
-- [ ] consistent-hashing
-- [ ] bounded loads
+
+## Hash
+- [x] fnv
 
 ## Data structures
 
@@ -94,6 +95,11 @@ numerical calculation
 - [x] binary search tree
 - [x] heap
 - [x] treap
+
+### hash table
+- [x] very basic
+- [ ] consistent-hashing
+- [ ] robin hood hashing
 
 ## Etc
 - [x] bits
