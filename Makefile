@@ -36,6 +36,12 @@ math:
 	cd ./pkg/math/basic; go test;
 	cd ./pkg/math/newton; go test;
 
+hashtable:
+	cd ./pkg/hashtable/basic; go test;
+
+hash:
+	cd ./pkg/hash/fnv; go test;
+
 
 sample:
 	cd ./pkg/sample; go test
