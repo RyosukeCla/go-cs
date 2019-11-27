@@ -42,6 +42,9 @@ hashtable:
 hash:
 	cd ./pkg/hash/fnv; go test;
 
+rand:
+	cd ./pkg/rand/midsquare; go test;
+
 
 sample:
 	cd ./pkg/sample; go test

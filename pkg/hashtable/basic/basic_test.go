@@ -1,4 +1,4 @@
-package robinhood
+package basic
 
 import (
 	"testing"
