@@ -65,7 +65,7 @@ numerical calculation
 - [ ] Gibbs sampling
 
 ### Pseudorandom
-- [ ] midsquare
+- [x] midsquare
 - [ ] linear congruential generators
 - [ ] linear feedback shift register
 - [ ] xorshift
