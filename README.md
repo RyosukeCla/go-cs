@@ -66,7 +66,7 @@ numerical calculation
 
 ### Pseudorandom
 - [x] midsquare
-- [ ] linear congruential generators
+- [x] linear congruential generators
 - [ ] linear feedback shift register
 - [ ] xorshift
 - [ ] mersenne twister
