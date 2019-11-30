@@ -5,29 +5,29 @@ import (
 	"strconv"
 )
 
-// Rand ...
+// Rand for middle square method implementation.
 type Rand struct {
-	seed int
-	n    int
+	seed int // random seed
+	n    int // n-digits
 }
 
-// NewRand returns psedou random with n-digits.
-func NewRand(n int, seed int) Rand {
+// NewRand returns rand
+func NewRand(n, seed int) Rand {
 	return Rand{
-		seed: seed,
-		n:    n,
+		seed,
+		n,
 	}
 }
 
 // Generate generates pseudorandom. seed is required to be 4 digits number.
-func (rand *Rand) Generate() int {
-	digits := rand.seed        // n digits seed
+func (r *Rand) Generate() int {
+	digits := r.seed           // n digits seed
 	squared := digits * digits // 2n digits
-	str := fmt.Sprintf("%0*d", 2*rand.n, squared)
-	res, _ := strconv.Atoi(str[rand.n/2 : 2*rand.n-rand.n/2]) // cut middle
+	str := fmt.Sprintf("%0*d", 2*r.n, squared)
+	res, _ := strconv.Atoi(str[r.n/2 : 2*r.n-r.n/2]) // cut middle
 
 	// update seed
-	rand.seed = res
+	r.seed = res
 
 	return res
 }
