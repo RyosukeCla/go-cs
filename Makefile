@@ -20,51 +20,34 @@ test-bits:
 	cd ./pkg/bits; go test
 
 test-coding:
-	cd ./pkg/coding/huffman; go test
-	cd ./pkg/coding/lz77; go test
-	cd ./pkg/coding/runlength; go test
+	go test ./pkg/coding/?*/
 
 test-adt:
-	cd ./pkg/adt/bstree; go test
-	cd ./pkg/adt/treap; go test
-	cd ./pkg/adt/heap; go test
+	go test ./pkg/adt/?*/
 
 test-sort:
-	cd ./pkg/sort/bubble; go test
-	cd ./pkg/sort/bucket; go test
-	cd ./pkg/sort/heap; go test
-	cd ./pkg/sort/merge; go test
-	cd ./pkg/sort/quick; go test
-	cd ./pkg/sort/insertion; go test
-	cd ./pkg/sort/intro; go test
+	go test ./pkg/sort/?*/
 
 test-search:
-	cd ./pkg/search/linear; go test;
-	cd ./pkg/search/binary; go test;
-	cd ./pkg/search/jump; go test;
+	go test ./pkg/search/?*/
 
 test-math:
-	cd ./pkg/math/basic; go test;
-	cd ./pkg/math/newton; go test;
+	go test ./pkg/math/?*/
 
 test-hashtable:
-	cd ./pkg/hashtable/basic; go test;
+	go test ./pkg/hashtable/?*/
 
 test-hash:
-	cd ./pkg/hash/fnv; go test;
+	go test ./pkg/hash/?*/
 
 test-rand:
-	cd ./pkg/rand/midsquare; go test;
+	go test ./pkg/rand/?*/
 
 # benches
 bench-sort:
-	cd ./pkg/sort; go test -bench . -benchmem
+	go test ./pkg/sort -bench . -benchmem
 
 # comparisons
 compare-quick-with-merge:
-	cd ./pkg/sort; go test
-
-# etc
-sample:
-	cd ./pkg/sample; go test
+	go test ./pkg/sort
 
