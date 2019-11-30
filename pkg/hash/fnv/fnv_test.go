@@ -1,6 +1,8 @@
 package fnv
 
-import "testing"
+import (
+	"testing"
+)
 
 func Test(t *testing.T) {
 	Hash([]byte{1, 1})

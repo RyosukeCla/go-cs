@@ -3,25 +3,31 @@ package midsquare
 import (
 	"fmt"
 	"strconv"
-
-	"github.com/RyosukeCla/go-cs/pkg/hashtable/basic"
 )
 
-// Generate generates pseudorandom. seed is required to be 4 digits number.
-func Generate(seed int) int {
-	hashtable := basic.NewHashTable(100000)
-	digits := seed
-	for {
-		digitsStr := fmt.Sprintf("%d", digits)
-		if hashtable.Get(digitsStr) == true {
-			break
-		}
+// Rand ...
+type Rand struct {
+	seed int
+	n    int
+}
 
-		hashtable.Put(string(digits), true)
-		squared := digits * digits
-		str := fmt.Sprintf("%d", squared)
-		digits, _ = strconv.Atoi(str[2:6])
+// NewRand returns psedou random with n-digits.
+func NewRand(n int, seed int) Rand {
+	return Rand{
+		seed: seed,
+		n:    n,
 	}
+}
 
-	return digits
+// Generate generates pseudorandom. seed is required to be 4 digits number.
+func (rand *Rand) Generate() int {
+	digits := rand.seed        // n digits seed
+	squared := digits * digits // 2n digits
+	str := fmt.Sprintf("%0*d", 2*rand.n, squared)
+	res, _ := strconv.Atoi(str[rand.n/2 : 2*rand.n-rand.n/2]) // cut middle
+
+	// update seed
+	rand.seed = res
+
+	return res
 }
