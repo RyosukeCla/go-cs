@@ -49,5 +49,5 @@ bench-sort:
 
 # comparisons
 compare-quick-with-merge:
-	go test ./pkg/sort
+	go test ./pkg/sort -v
 
