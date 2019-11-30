@@ -30,6 +30,7 @@
 - [x] runlength
 - [ ] lz78
 - [ ] lzw
+- [ ] base64
 
 ### Math
 
@@ -87,7 +88,18 @@ numerical calculation
 - [ ] Source IP Hash
 
 ## Hash
+
+uncryptographic hash
 - [x] fnv
+
+cryptographic hash
+- [ ] md5
+- [ ] sha-1
+- [ ] ripemd-160
+- [ ] bcrypt
+- [ ] whirlpool
+- [ ] sha-2
+- [ ] sha-3
 
 ## Data structures
 
