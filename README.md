@@ -38,6 +38,7 @@ basic functions
 - [x] factorial
 - [x] absolute
 - [x] square
+- [x] ceil
 - [ ] power
 - [ ] exponential
 - [ ] logarithm

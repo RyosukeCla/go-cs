@@ -21,6 +21,15 @@ func Square(x float64) float64 {
 	return x * x
 }
 
+// Ceil returns upper [x]
+func Ceil(x float64) float64 {
+	floor := float64(int64(x))
+	if floor < x {
+		return floor + 1
+	}
+	return floor
+}
+
 // Power returns x^y, and y is integer
 // func Power(x float64, y int) float64 {
 // 	for {
