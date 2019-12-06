@@ -30,7 +30,7 @@
 - [x] runlength
 - [ ] lz78
 - [ ] lzw
-- [ ] base64
+- [x] base64
 
 ### Math
 
