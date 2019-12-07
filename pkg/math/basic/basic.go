@@ -30,6 +30,11 @@ func Ceil(x float64) float64 {
 	return floor
 }
 
+// Floor returns upper [x]
+func Floor(x float64) float64 {
+	return float64(int64(x))
+}
+
 // Sin returns sin(theta)
 func Sin(x float64) float64 {
 	res := x

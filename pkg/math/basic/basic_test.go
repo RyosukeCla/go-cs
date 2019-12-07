@@ -38,6 +38,12 @@ func TestCeil(t *testing.T) {
 	}
 }
 
+func TestFloor(t *testing.T) {
+	if Floor(5.5) != 5.0 {
+		t.Fatal("Error")
+	}
+}
+
 func TestSin(t *testing.T) {
 	if Abs(Sin(2.0)-0.90929742682) > 0.0000001 {
 		t.Fatal("Error", Sin(2.0))

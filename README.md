@@ -39,6 +39,7 @@ basic functions
 - [x] absolute
 - [x] square
 - [x] ceil
+- [x] floor
 - [ ] power
 - [ ] exponential
 - [ ] logarithm
