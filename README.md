@@ -42,8 +42,8 @@ basic functions
 - [ ] power
 - [ ] exponential
 - [ ] logarithm
-- [ ] sin
-- [ ] cos
+- [x] sin
+- [x] cos
 - [ ] tan
 
 numerical calculation
