@@ -30,6 +30,30 @@ func Ceil(x float64) float64 {
 	return floor
 }
 
+// Sin returns sin(theta)
+func Sin(x float64) float64 {
+	res := x
+	preTerm := x
+	for i := 1; i < 7; i++ {
+		degree := float64(2*i + 1)
+		preTerm = -1 * preTerm * x * x / (degree * (degree - 1))
+		res += preTerm
+	}
+	return res
+}
+
+// Cos returns sin(theta)
+func Cos(x float64) float64 {
+	res := x
+	preTerm := 1.0
+	for i := 1; i < 7; i++ {
+		degree := float64(2 * i)
+		preTerm = -1 * preTerm * x * x / (degree * (degree - 1)) // nextTerm = -1 * preTerm * x^2 / (degree * (degree - 1))
+		res += preTerm
+	}
+	return res
+}
+
 // Power returns x^y, and y is integer
 // func Power(x float64, y int) float64 {
 // 	for {

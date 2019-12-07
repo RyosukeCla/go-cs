@@ -31,3 +31,21 @@ func TestSquare(t *testing.T) {
 		t.Fatal("Error")
 	}
 }
+
+func TestCeil(t *testing.T) {
+	if Ceil(5.5) != 6.0 {
+		t.Fatal("Error")
+	}
+}
+
+func TestSin(t *testing.T) {
+	if Abs(Sin(2.0)-0.90929742682) > 0.0000001 {
+		t.Fatal("Error", Sin(2.0))
+	}
+}
+
+func TestCos(t *testing.T) {
+	if Abs(Cos(1.0)-0.54030230586) > 0.0000001 {
+		t.Fatal("Error", Cos(1.0))
+	}
+}
