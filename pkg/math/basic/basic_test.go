@@ -49,3 +49,9 @@ func TestCos(t *testing.T) {
 		t.Fatal("Error", Cos(1.0))
 	}
 }
+
+func TestTan(t *testing.T) {
+	if Abs(Tan(1.0)-1.55740772465) > 0.0000001 {
+		t.Fatal("Error", Tan(1.0))
+	}
+}

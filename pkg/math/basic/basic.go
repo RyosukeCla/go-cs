@@ -53,3 +53,8 @@ func Cos(x float64) float64 {
 	}
 	return res
 }
+
+// Tan returns tan(theta)
+func Tan(x float64) float64 {
+	return Sin(x) / Cos(x)
+}

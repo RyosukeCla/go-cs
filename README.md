@@ -44,7 +44,7 @@ basic functions
 - [ ] logarithm
 - [x] sin
 - [x] cos
-- [ ] tan
+- [x] tan
 
 numerical calculation
 - [x] newton
