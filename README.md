@@ -70,7 +70,7 @@ numerical calculation
 - [x] midsquare
 - [x] linear congruential generators
 - [ ] linear feedback shift register
-- [ ] xorshift
+- [x] xorshift
 - [ ] mersenne twister
 - [ ] Blum-Blum-Shub
 
