@@ -8,7 +8,7 @@ import (
 
 func Test(t *testing.T) {
 	N := 10
-	seen := robinhood.NewHashTable(uint(5000))
+	seen := robinhood.NewHashTable(uint32(5000))
 	rand := NewRand(4, 9090)
 	for i := 0; i < N; i++ {
 		r := rand.Generate()

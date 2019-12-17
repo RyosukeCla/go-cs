@@ -7,7 +7,7 @@ import (
 // HashTable ...
 type HashTable struct {
 	slots    []slot
-	slotSize uint
+	slotSize uint32
 }
 
 type entry struct {
@@ -20,7 +20,7 @@ type slot struct {
 }
 
 // NewHashTable returns hash table
-func NewHashTable(slotSize uint) HashTable {
+func NewHashTable(slotSize uint32) HashTable {
 	slots := make([]slot, slotSize, slotSize)
 	size := len(slots)
 	for i := 0; i < size; i++ {
@@ -35,7 +35,7 @@ func NewHashTable(slotSize uint) HashTable {
 	}
 }
 
-func hashFunction(value string) uint {
+func hashFunction(value string) uint32 {
 	bytes := []byte(value)
 	return fnv.Hash(bytes)
 }
