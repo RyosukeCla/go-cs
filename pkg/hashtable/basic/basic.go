@@ -6,16 +6,32 @@ import (
 
 // HashTable ...
 type HashTable struct {
-	entries []interface{}
-	maxSize uint
+	slots    []slot
+	slotSize uint
+}
+
+type entry struct {
+	key   string
+	value interface{}
+}
+
+type slot struct {
+	entries []entry
 }
 
 // NewHashTable returns hash table
-func NewHashTable(maxSize uint) HashTable {
-	entries := make([]interface{}, maxSize, maxSize)
+func NewHashTable(slotSize uint) HashTable {
+	slots := make([]slot, slotSize, slotSize)
+	size := len(slots)
+	for i := 0; i < size; i++ {
+		entries := make([]entry, 0, 3)
+		slots[i] = slot{
+			entries,
+		}
+	}
 	return HashTable{
-		entries: entries,
-		maxSize: maxSize,
+		slots:    slots,
+		slotSize: slotSize,
 	}
 }
 
@@ -26,18 +42,36 @@ func hashFunction(value string) uint {
 
 // Get ...
 func (h *HashTable) Get(key string) interface{} {
-	index := hashFunction(key) % h.maxSize
-	return h.entries[index]
+	index := hashFunction(key) % h.slotSize
+	slot := &h.slots[index]
+	for _, entry := range slot.entries {
+		if entry.key == key {
+			return entry.value
+		}
+	}
+	return nil
 }
 
 // Put ...
-func (h *HashTable) Put(key string, entry interface{}) {
-	index := hashFunction(key) % h.maxSize
-	h.entries[index] = entry
+func (h *HashTable) Put(key string, value interface{}) {
+	index := hashFunction(key) % h.slotSize
+	slot := &h.slots[index]
+	slot.entries = append(slot.entries, entry{
+		key,
+		value,
+	})
 }
 
 // Erase ...
 func (h *HashTable) Erase(key string) {
-	index := hashFunction(key) % h.maxSize
-	h.entries[index] = nil
+	index := hashFunction(key) % h.slotSize
+	slot := &h.slots[index]
+	for i, entry := range slot.entries {
+		if entry.key == key {
+			entries := slot.entries
+			entries[0], entries[i] = entries[i], entries[0] // swap
+			slot.entries = entries[1:]                      // remove
+			return
+		}
+	}
 }
