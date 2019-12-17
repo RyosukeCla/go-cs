@@ -110,10 +110,9 @@ cryptographic hash
 - [x] heap
 - [x] treap
 
-### hash table
-- [x] very basic
+### hashtable
+- [x] robin hood hashing
 - [ ] consistent-hashing
-- [ ] robin hood hashing
 
 ## Etc
 - [x] bits
