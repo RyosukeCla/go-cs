@@ -1,4 +1,4 @@
-package basic
+package robinhood
 
 import (
 	"github.com/RyosukeCla/go-cs/pkg/hash/fnv"
