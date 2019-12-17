@@ -5,8 +5,8 @@ type Rand struct {
 }
 
 // NewRand returns Rand that implements linear congruential generation
-func NewRand(seed uint32) Rand {
-	return Rand{
+func NewRand(seed uint32) *Rand {
+	return &Rand{
 		previous: seed,
 	}
 }

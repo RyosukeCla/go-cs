@@ -12,8 +12,8 @@ type Rand struct {
 }
 
 // NewRand returns rand
-func NewRand(n, seed int) Rand {
-	return Rand{
+func NewRand(n, seed int) *Rand {
+	return &Rand{
 		seed,
 		n,
 	}
