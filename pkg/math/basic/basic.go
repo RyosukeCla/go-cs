@@ -1,5 +1,10 @@
 package basic
 
+const PI = 3.14159265358979323846264338327950288419716939937510582097494459
+const TWO_PI = 2 * PI
+const HALF_PI = PI / 2.0
+const E = 2.71828182845904523536028747135266249775724709369995957496696763
+
 // Factorial returns n!
 func Factorial(n int) int {
 	if n <= 1 {
@@ -21,6 +26,18 @@ func Square(x float64) float64 {
 	return x * x
 }
 
+// Mod returns r s.t. a / b = c ... r, c in Z.
+func Mod(a, b float64) float64 {
+	ab := a / b
+	return a - b*Floor(ab)
+}
+
+func Power(a, b float64) float64 {
+	// f(x) = x^(1/b) - a = 0 => x = a^b
+	//
+	return 0
+}
+
 // Ceil returns upper [x]
 func Ceil(x float64) float64 {
 	floor := float64(int64(x))
@@ -30,18 +47,23 @@ func Ceil(x float64) float64 {
 	return floor
 }
 
-// Floor returns upper [x]
+// Floor returns lower [x]
 func Floor(x float64) float64 {
-	return float64(int64(x))
+	y := float64(int64(x))
+	if y < 0 {
+		return y - 1
+	}
+	return y
 }
 
 // Sin returns sin(theta)
 func Sin(x float64) float64 {
-	res := x
-	preTerm := x
-	for i := 1; i < 7; i++ {
+	xx := PI - Mod(x, TWO_PI)
+	res := xx
+	preTerm := xx
+	for i := 1; i < 8; i++ {
 		degree := float64(2*i + 1)
-		preTerm = -1 * preTerm * x * x / (degree * (degree - 1))
+		preTerm = -1 * preTerm * xx * xx / (degree * (degree - 1))
 		res += preTerm
 	}
 	return res
@@ -49,14 +71,7 @@ func Sin(x float64) float64 {
 
 // Cos returns sin(theta)
 func Cos(x float64) float64 {
-	res := x
-	preTerm := 1.0
-	for i := 1; i < 7; i++ {
-		degree := float64(2 * i)
-		preTerm = -1 * preTerm * x * x / (degree * (degree - 1))
-		res += preTerm
-	}
-	return res
+	return Sin(HALF_PI - x)
 }
 
 // Tan returns tan(theta)

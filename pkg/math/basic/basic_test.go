@@ -1,6 +1,8 @@
 package basic
 
-import "testing"
+import (
+	"testing"
+)
 
 func TestFactorial(t *testing.T) {
 	if Factorial(5) != 120 {
@@ -32,14 +34,32 @@ func TestSquare(t *testing.T) {
 	}
 }
 
+func TestMod(t *testing.T) {
+	if Abs(Mod(5.5, 2.2)-1.1) > 0.00001 {
+		t.Fatal("Error", Mod(5.5, 2.2))
+	}
+
+	if Abs(Mod(-5.5, 2.2)-1.1) > 0.00001 {
+		t.Fatal("Error", Mod(-5.5, 2.2))
+	}
+}
+
 func TestCeil(t *testing.T) {
 	if Ceil(5.5) != 6.0 {
+		t.Fatal("Error")
+	}
+
+	if Ceil(-5.5) != -5.0 {
 		t.Fatal("Error")
 	}
 }
 
 func TestFloor(t *testing.T) {
 	if Floor(5.5) != 5.0 {
+		t.Fatal("Error")
+	}
+
+	if Floor(-5.5) != -6.0 {
 		t.Fatal("Error")
 	}
 }

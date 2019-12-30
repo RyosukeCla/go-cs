@@ -43,6 +43,7 @@ basic functions
 - [ ] power
 - [ ] exponential
 - [ ] logarithm
+- [x] mod
 - [x] sin
 - [x] cos
 - [x] tan
@@ -51,6 +52,9 @@ numerical calculation
 - [x] newton
 - [ ] quasi newton
 - [ ] BFGS: Broyden–Fletcher–Goldfarb–Shanno
+- [ ] Jacobi method
+- [ ] Gauss-Seidel method
+- [ ] Successive Over-Relaxation
 - [ ] gaussian elimination
 - [ ] euler
 - [ ] Leap-Frog
@@ -60,6 +64,7 @@ numerical calculation
 - [ ] Simulated Annealing
 - [ ] genetic algorithm
 - [ ] ant colony optimization
+- [ ] Particle Swarm Optimization
 
 ### Statistics
 - [ ] Metropolis-Hastings
@@ -112,7 +117,12 @@ cryptographic hash
 
 ### hashtable
 - [x] robin hood hashing
-- [ ] consistent-hashing
+- [x] consistent-hashing
+
+## Succinct Data Struture
+- [ ] bit vector
+- [ ] wavelet tree
+- [ ] wavelet matrix 
 
 ## Etc
 - [x] bits
