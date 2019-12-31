@@ -58,8 +58,7 @@ func Floor(x float64) float64 {
 	return y
 }
 
-// Exp returns e^x = 1 + x + x^2 / 2! + ...
-func Exp(x float64) float64 {
+func expWithTalyorExpantion(x float64) float64 {
 	res := 1 + x
 	preTerm := x
 	for i := 2; i < 18; i++ {
@@ -68,6 +67,22 @@ func Exp(x float64) float64 {
 		res += preTerm
 	}
 	return res
+}
+
+// Exp returns e^x
+func Exp(x float64) float64 {
+	// x = c ... r
+	// e^x = e^c * e^r
+	c := Floor(x)
+	r := x - c
+	res := 1.0
+
+	n := int(c)
+	for i := 0; i < n; i++ {
+		res *= E
+	}
+
+	return res * expWithTalyorExpantion(r)
 }
 
 // Sin returns sin(x)

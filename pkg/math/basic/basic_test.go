@@ -78,6 +78,10 @@ func TestSin(t *testing.T) {
 	if Abs(Sin(2.0)-0.90929742682) > 0.0000001 {
 		t.Fatal("Error", Sin(2.0))
 	}
+
+	if Abs(Sin(100*PI)) > 0.0000001 {
+		t.Fatal("Error", Sin(100*PI))
+	}
 }
 
 func TestCos(t *testing.T) {
