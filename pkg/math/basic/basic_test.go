@@ -64,6 +64,16 @@ func TestFloor(t *testing.T) {
 	}
 }
 
+func TestExp(t *testing.T) {
+	if Abs(Exp(1.0)-E) > 0.0000001 {
+		t.Fatal("Error", Exp(1.0))
+	}
+
+	if Abs(Exp(10.0)-22026.4657948) > 0.0000001 {
+		t.Fatal("Error", Exp(10.0))
+	}
+}
+
 func TestSin(t *testing.T) {
 	if Abs(Sin(2.0)-0.90929742682) > 0.0000001 {
 		t.Fatal("Error", Sin(2.0))
