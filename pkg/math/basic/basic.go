@@ -58,7 +58,7 @@ func Floor(x float64) float64 {
 	return y
 }
 
-func expWithTalyorExpantion(x float64) float64 {
+func expWithTalyorExpansion(x float64) float64 {
 	res := 1 + x
 	preTerm := x
 	for i := 2; i < 18; i++ {
@@ -82,7 +82,7 @@ func Exp(x float64) float64 {
 		res *= E
 	}
 
-	return res * expWithTalyorExpantion(r)
+	return res * expWithTalyorExpansion(r)
 }
 
 // Sin returns sin(x)
