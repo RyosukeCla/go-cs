@@ -40,8 +40,8 @@ basic functions
 - [x] square
 - [x] ceil
 - [x] floor
-- [ ] power
-- [ ] logarithm
+- [x] power
+- [x] logarithm
 - [x] mod
 - [x] exp
 - [x] sin

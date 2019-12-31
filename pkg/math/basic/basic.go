@@ -4,6 +4,8 @@ const PI float64 = 3.14159265358979323846264338327950288419716939937510582097494
 const TWO_PI float64 = 2 * PI
 const HALF_PI float64 = PI / 2.0
 const E float64 = 2.71828182845904523536028747135266249775724709369995957496696763
+const LN2 float64 = 0.693147180559945309417232121458176568075500134360255254120680009
+const LN10 float64 = 2.30258509299404568401799145468436420760110148862877297603332790
 
 // Factorial returns n!
 func Factorial(n int) int {
@@ -32,14 +34,6 @@ func Mod(a, b float64) float64 {
 	return a - b*Floor(ab)
 }
 
-// func Power(a, b float64) float64 {
-// 	// f(x) = x^(1/b) - a = 0 => x = a^b
-// 	//
-
-// 	return Exp(y * Log(x))
-// 	return 0
-// }
-
 // Ceil returns upper [x]
 func Ceil(x float64) float64 {
 	floor := float64(int64(x))
@@ -58,6 +52,39 @@ func Floor(x float64) float64 {
 	return y
 }
 
+// Power returns a^b
+func Power(a, b float64) float64 {
+	return Exp(b * Ln(a))
+}
+
+// ln(x) = 2 arctanh (x-1)/(x+1)
+func lnWithTaylorExpansion(x float64) float64 {
+	zz := (x - 1) / (x + 1)
+	preTerm := zz
+	res := preTerm
+	for i := 1; i < 10; i++ {
+		degree := float64(2*i + 1)
+		preTerm = preTerm * zz * zz
+		res += preTerm / degree
+	}
+	return 2 * res
+}
+
+func Ln(x float64) float64 {
+	// find a and b s.t. x = a * 2^b, 0 < a < 1.4
+	count := 0.0
+	temp := x
+	for {
+		if temp < 1.0 {
+			break
+		}
+		temp = temp / 2.0
+		count++
+	}
+
+	return lnWithTaylorExpansion(temp) + count*LN2
+}
+
 func expWithTalyorExpansion(x float64) float64 {
 	res := 1 + x
 	preTerm := x
@@ -71,17 +98,17 @@ func expWithTalyorExpansion(x float64) float64 {
 
 // Exp returns e^x
 func Exp(x float64) float64 {
-	// x = c ... r
+	// x = c ... r, c in Z and r in [0, 1)
 	// e^x = e^c * e^r
 	c := Floor(x)
 	r := x - c
 	res := 1.0
-
+	// e^c
 	n := int(c)
 	for i := 0; i < n; i++ {
 		res *= E
 	}
-
+	// * e^r
 	return res * expWithTalyorExpansion(r)
 }
 
