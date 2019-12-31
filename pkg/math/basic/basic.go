@@ -28,7 +28,7 @@ func Square(x float64) float64 {
 	return x * x
 }
 
-// Mod returns r s.t. a / b = c ... r, c in Z.
+// Mod returns r s.t. a / b = c + r, c in Z.
 func Mod(a, b float64) float64 {
 	ab := a / b
 	return a - b*Floor(ab)
