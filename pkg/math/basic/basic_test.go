@@ -64,6 +64,16 @@ func TestFloor(t *testing.T) {
 	}
 }
 
+func TestSqrt(t *testing.T) {
+	if Abs(Sqrt(2)-1.41421356237) > 0.000000001 {
+		t.Fatal("Error", Sqrt(2))
+	}
+
+	if Abs(Sqrt(99)-9.94987437107) > 0.000000001 {
+		t.Fatal("Error", Sqrt(99))
+	}
+}
+
 func TestPower(t *testing.T) {
 	if Abs(Power(3.0, 2.0)-9.0) > 0.0000001 {
 		t.Fatal("Error", Power(3.0, 2.0))

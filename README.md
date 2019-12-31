@@ -40,6 +40,7 @@ basic functions
 - [x] square
 - [x] ceil
 - [x] floor
+- [x] sqrt
 - [x] power
 - [x] logarithm
 - [x] mod

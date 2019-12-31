@@ -52,6 +52,15 @@ func Floor(x float64) float64 {
 	return y
 }
 
+// Sqrt returns square root of x
+func Sqrt(x float64) float64 {
+	res := 1.0
+	for i := 0; i < 7; i++ {
+		res -= (res*res - x) / (2 * res)
+	}
+	return res
+}
+
 // Power returns a^b
 func Power(a, b float64) float64 {
 	return Exp(b * Ln(a))
