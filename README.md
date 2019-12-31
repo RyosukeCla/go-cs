@@ -41,9 +41,9 @@ basic functions
 - [x] ceil
 - [x] floor
 - [ ] power
-- [ ] exponential
 - [ ] logarithm
 - [x] mod
+- [x] exp
 - [x] sin
 - [x] cos
 - [x] tan
