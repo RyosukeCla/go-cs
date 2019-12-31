@@ -56,7 +56,7 @@ func Floor(x float64) float64 {
 func Sqrt(x float64) float64 {
 	res := 1.0
 	for i := 0; i < 7; i++ {
-		res -= (res*res - x) / (2 * res)
+		res -= (res*res - x) / (2 * res) // newton method
 	}
 	return res
 }
