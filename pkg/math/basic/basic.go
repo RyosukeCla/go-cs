@@ -100,8 +100,8 @@ func expWithTalyorExpansion(x float64) float64 {
 
 // Exp returns e^x
 func Exp(x float64) float64 {
-	// x = c + r, c in Z and r in [0, 1)
-	// e^x = e^c * e^r
+	// find c and r s.t. x = c + r, c in Z and r in [0, 1)
+	// then calculate e^x = e^c * e^r
 	c := Floor(x)
 	r := x - c
 	res := 1.0
