@@ -70,19 +70,21 @@ func lnWithTaylorExpansion(x float64) float64 {
 	return 2 * res
 }
 
+// Ln returns ln(x)
 func Ln(x float64) float64 {
-	// find a and b s.t. x = a * 2^b, 0 < a < 1.4
-	count := 0.0
-	temp := x
+	// find a and b s.t. x = a * 2^b, 0 < a < 1.0
+	// then calculate ln(x) = ln(a) + b * ln2
+	a := x
+	b := 0.0
 	for {
-		if temp < 1.0 {
+		if a < 1.0 {
 			break
 		}
-		temp = temp / 2.0
-		count++
+		a = a / 2.0
+		b++
 	}
 
-	return lnWithTaylorExpansion(temp) + count*LN2
+	return lnWithTaylorExpansion(a) + b*LN2
 }
 
 func expWithTalyorExpansion(x float64) float64 {
