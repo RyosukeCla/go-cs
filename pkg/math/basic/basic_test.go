@@ -98,6 +98,12 @@ func TestLn(t *testing.T) {
 	}
 }
 
+func TestLog(t *testing.T) {
+	if Abs(Log(2.0, 65536)-16) > 0.0000001 {
+		t.Fatal("Error", Log(2.0, 65536))
+	}
+}
+
 func TestExp(t *testing.T) {
 	if Abs(Exp(1.0)-E) > 0.0000001 {
 		t.Fatal("Error", Exp(1.0))

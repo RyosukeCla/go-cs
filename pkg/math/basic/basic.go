@@ -75,7 +75,7 @@ func lnWithTaylorExpansion(x float64) float64 {
 	return 2 * res
 }
 
-// Ln returns ln(x)
+// Ln returns log_e(x)
 func Ln(x float64) float64 {
 	// find a and b s.t. x = a * 2^b, 0 < a < 1.0
 	// then calculate ln(x) = ln(a) + b * ln2
@@ -90,6 +90,11 @@ func Ln(x float64) float64 {
 	}
 
 	return lnWithTaylorExpansion(a) + b*LN2
+}
+
+// Log returns log_a(b)
+func Log(a, b float64) float64 {
+	return Ln(b) / Ln(a)
 }
 
 func expWithTalyorExpansion(x float64) float64 {
