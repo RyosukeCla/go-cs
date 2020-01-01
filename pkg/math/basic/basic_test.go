@@ -52,10 +52,18 @@ func TestCeil(t *testing.T) {
 	if Ceil(-5.5) != -5.0 {
 		t.Fatal("Error")
 	}
+
+	if Ceil(5.0) != 5.0 {
+		t.Fatal("Error")
+	}
 }
 
 func TestFloor(t *testing.T) {
 	if Floor(5.5) != 5.0 {
+		t.Fatal("Error")
+	}
+
+	if Floor(-5.0) != -5.0 {
 		t.Fatal("Error")
 	}
 
@@ -97,6 +105,10 @@ func TestExp(t *testing.T) {
 
 	if Abs(Exp(10.0)-22026.4657948) > 0.0000001 {
 		t.Fatal("Error", Exp(10.0))
+	}
+
+	if Abs(Exp(-10.0)-0.00004539992) > 0.0000001 {
+		t.Fatal("Error", Exp(-10.0))
 	}
 }
 

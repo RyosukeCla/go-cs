@@ -45,11 +45,7 @@ func Ceil(x float64) float64 {
 
 // Floor returns lower [x]
 func Floor(x float64) float64 {
-	y := float64(int64(x))
-	if y < 0 {
-		return y - 1
-	}
-	return y
+	return -Ceil(-x)
 }
 
 // Sqrt returns square root of x
@@ -115,9 +111,16 @@ func Exp(x float64) float64 {
 	r := x - c
 	res := 1.0
 	// e^c
-	n := int(c)
-	for i := 0; i < n; i++ {
-		res *= E
+	if c > 0 {
+		n := int(c)
+		for i := 0; i < n; i++ {
+			res *= E
+		}
+	} else {
+		n := int(-c)
+		for i := 0; i < n; i++ {
+			res /= E
+		}
 	}
 	// * e^r
 	return res * expWithTalyorExpansion(r)
