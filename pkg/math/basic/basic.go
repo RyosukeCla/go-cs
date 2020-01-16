@@ -67,7 +67,7 @@ func lnWithTaylorExpansion(x float64) float64 {
 	zz := (x - 1) / (x + 1)
 	preTerm := zz
 	res := preTerm
-	for i := 1; i < 10; i++ {
+	for i := 1; i < 8; i++ {
 		degree := float64(2*i + 1)
 		preTerm = preTerm * zz * zz
 		res += preTerm / degree
@@ -85,7 +85,7 @@ func Ln(x float64) float64 {
 		if a < 1.0 {
 			break
 		}
-		a = a / 2.0
+		a = a * 0.5
 		b++
 	}
 
@@ -100,7 +100,7 @@ func Log(a, b float64) float64 {
 func expWithTalyorExpansion(x float64) float64 {
 	res := 1 + x
 	preTerm := x
-	for i := 2; i < 18; i++ {
+	for i := 2; i < 8; i++ {
 		degree := float64(i)
 		preTerm = preTerm * x / degree
 		res += preTerm
@@ -123,8 +123,9 @@ func Exp(x float64) float64 {
 		}
 	} else {
 		n := int(-c)
+		inverse := 1.0 / E
 		for i := 0; i < n; i++ {
-			res /= E
+			res *= inverse
 		}
 	}
 	// * e^r

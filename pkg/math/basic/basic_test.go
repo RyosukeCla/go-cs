@@ -1,6 +1,7 @@
 package basic
 
 import (
+	"math"
 	"testing"
 )
 
@@ -98,6 +99,18 @@ func TestLn(t *testing.T) {
 	}
 }
 
+func BenchmarkLn(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		Ln(12345.6789)
+	}
+}
+
+func BenchmarkMathLn(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		math.Log(12345.6789)
+	}
+}
+
 func TestLog(t *testing.T) {
 	if Abs(Log(2.0, 65536)-16) > 0.0000001 {
 		t.Fatal("Error", Log(2.0, 65536))
@@ -115,6 +128,18 @@ func TestExp(t *testing.T) {
 
 	if Abs(Exp(-10.0)-0.00004539992) > 0.0000001 {
 		t.Fatal("Error", Exp(-10.0))
+	}
+}
+
+func BenchmarkExp(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		Exp(123.4567)
+	}
+}
+
+func BenchmarkMathExp(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		math.Exp(123.4567)
 	}
 }
 
