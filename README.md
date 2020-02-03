@@ -121,7 +121,7 @@ cryptographic hash
 - [x] consistent-hashing
 
 ## Succinct Data Struture
-- [ ] bit vector
+- [x] bit vector
 - [ ] wavelet tree
 - [ ] wavelet matrix 
 
