@@ -123,6 +123,7 @@ cryptographic hash
 - [x] heap
 - [x] treap
 - [ ] btree
+- [ ] Log-structured merge-tree
 
 ### hashtable
 - [x] robin hood hashing
@@ -135,6 +136,7 @@ cryptographic hash
 
 ## Probabilistic Data Structures
 - [ ] bloom filter
+  - wiredtiger: https://github.com/wiredtiger/wiredtiger/wiki/LSMTrees-Bloom
 
 ## Etc
 - [x] bits
