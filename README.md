@@ -5,6 +5,10 @@
 
 (doc)[./pkg/distributed]
 
+#### Database
+
+- [ ] MultiVersion Concurrency Control
+
 #### Mutual exclution
 - [ ] Lamport's Distributed Mutual Exclusion Algorithm
 - [ ] Naimi-Trehel's log(n) Algorithm
