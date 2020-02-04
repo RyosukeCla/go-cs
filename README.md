@@ -122,6 +122,7 @@ cryptographic hash
 - [x] binary search tree
 - [x] heap
 - [x] treap
+- [ ] btree
 
 ### hashtable
 - [x] robin hood hashing
@@ -131,6 +132,9 @@ cryptographic hash
 - [x] bit vector
 - [ ] wavelet tree
 - [ ] wavelet matrix 
+
+## Probabilistic Data Structures
+- [ ] bloom filter
 
 ## Etc
 - [x] bits
