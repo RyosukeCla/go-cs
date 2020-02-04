@@ -2,6 +2,9 @@
 
 ## Algorithms
 ### Distributed systems algorithms
+
+(doc)[./pkg/distributed]
+
 #### Mutual exclution
 - [ ] Lamport's Distributed Mutual Exclusion Algorithm
 - [ ] Naimi-Trehel's log(n) Algorithm
