@@ -3,7 +3,7 @@
 ## Algorithms
 ### Distributed systems algorithms
 
-[./pkg/distributed](doc)
+[doc](./pkg/distributed)
 
 #### Database
 
