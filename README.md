@@ -137,6 +137,7 @@ cryptographic hash
 ## Probabilistic Data Structures
 - [ ] bloom filter
   - wiredtiger: https://github.com/wiredtiger/wiredtiger/wiki/LSMTrees-Bloom
+  - Building a Better Bloom Filter: https://www.eecs.harvard.edu/~michaelm/postscripts/rsa2008.pdf
 
 ## Etc
 - [x] bits
