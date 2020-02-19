@@ -10,6 +10,7 @@
 - [ ] MultiVersion Concurrency Control
 
 #### Mutual exclution
+- [x] spin lock
 - [ ] Lamport's Distributed Mutual Exclusion Algorithm
 - [ ] Naimi-Trehel's log(n) Algorithm
 - [ ] Maekawa's Algorithm
