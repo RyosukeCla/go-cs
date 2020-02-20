@@ -9,9 +9,12 @@
 
 - [ ] MultiVersion Concurrency Control
 
-#### Mutual exclution
+#### Mutex (Mutual exclution)
 - [x] spin lock
 - [x] ticket lock
+
+#### Cache
+- [x] write through/around/back
 
 #### Semaphore
 - [x] counting
