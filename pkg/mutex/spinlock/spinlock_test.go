@@ -14,8 +14,8 @@ func Test(t *testing.T) {
 		defer mutex.Unlock()
 
 		fmt.Println("Locking")
-		fmt.Println("sleep", sec, "sec")
-		time.Sleep(time.Duration(sec) * time.Second)
+		fmt.Println("sleep", sec, "mili sec")
+		time.Sleep(time.Duration(sec) * time.Millisecond)
 		fmt.Println("Unlock")
 		sig <- sec
 	}
