@@ -26,10 +26,13 @@ func (c *cache) WriteThrough(data int) {
 
 func (c *cache) WriteBack(data int) {
 	c.mutex.Acquire()
-	defer c.mutex.Release()
-
 	c.store.Write(data)
-	go c.backing.Write(data)
+
+	lazy := func () {
+		c.backing.Write(data)
+		c.mutex.Release()
+	}
+	go lazy
 }
 
 func (c *cache) WriteAround(data int) {
