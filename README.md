@@ -11,6 +11,7 @@
 
 #### Mutual exclution
 - [x] spin lock
+- [x] ticket lock
 - [ ] Lamport's Distributed Mutual Exclusion Algorithm
 - [ ] Naimi-Trehel's log(n) Algorithm
 - [ ] Maekawa's Algorithm
