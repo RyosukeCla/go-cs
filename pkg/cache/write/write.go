@@ -25,12 +25,9 @@ func (c *cache) WriteThrough(data int) {
 }
 
 func (c *cache) WriteBack(data int) {
-	c.mutex.Acquire()
 	c.store.Write(data)
-
 	lazy := func () {
 		c.backing.Write(data)
-		c.mutex.Release()
 	}
 	go lazy
 }
