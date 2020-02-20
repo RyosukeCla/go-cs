@@ -26,10 +26,7 @@ func (c *cache) WriteThrough(data int) {
 
 func (c *cache) WriteBack(data int) {
 	c.store.Write(data)
-	lazy := func () {
-		c.backing.Write(data)
-	}
-	go lazy
+	go c.backing.Write(data)
 }
 
 func (c *cache) WriteAround(data int) {
