@@ -5,19 +5,19 @@ import (
 	"sync/atomic"
 )
 
-type mutex struct {
+type Mutex struct {
 	nowServing int32
 	nextTicket int32
 }
 
-func New() mutex {
-	return mutex{
+func New() Mutex {
+	return Mutex{
 		nowServing: int32(0),
 		nextTicket: int32(-1),
 	}
 }
 
-func (m *mutex) Acquire() {
+func (m *Mutex) Acquire() {
 	myTicket := atomic.AddInt32(&m.nextTicket, 1)
 	for {
 		if myTicket == m.nowServing {
@@ -27,6 +27,6 @@ func (m *mutex) Acquire() {
 	}
 }
 
-func (m *mutex) Release() {
+func (m *Mutex) Release() {
 	atomic.AddInt32(&m.nowServing, 1)
 }
