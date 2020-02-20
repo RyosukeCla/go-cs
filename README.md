@@ -13,6 +13,10 @@
 - [x] spin lock
 - [x] ticket lock
 
+#### Semaphore
+- [x] counting
+- [ ] weighted
+
 ### Sort
 - [x] bubble sort
 - [x] bucket sort
