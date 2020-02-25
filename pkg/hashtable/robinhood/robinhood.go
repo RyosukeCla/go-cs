@@ -75,3 +75,11 @@ func (h *HashTable) Erase(key string) {
 		}
 	}
 }
+
+func (h *HashTable) Size() int {
+	size := 0
+	for _, slot := range h.slots {
+		size += len(slot.entries)
+	}
+	return size
+}

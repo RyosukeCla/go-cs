@@ -22,4 +22,8 @@ func TestHashtable(t *testing.T) {
 	if hashtable.Get("33") != nil {
 		t.Fatal("Error")
 	}
+
+	if hashtable.Size() != 199 {
+		t.Fatal("Error")
+	}
 }
