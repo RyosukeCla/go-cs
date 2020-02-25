@@ -12,6 +12,15 @@ type cache struct {
 	mutex   *ticketlock.Mutex
 }
 
+func New(cap int) cache {
+	lock := ticketlock.New()
+	return cache{
+		store:   newStore(cap),
+		backing: newBackingStore(cap),
+		mutex:   &lock,
+	}
+}
+
 func (c *cache) Write(data int) {
 	c.store.Write(data)
 }
@@ -37,8 +46,18 @@ func (c *cache) Read(index int) int {
 	return c.store.Read(index)
 }
 
+func (c *cache) ReadFromBackingStore(index int) int {
+	return c.backing.Read(index)
+}
+
 type store struct {
 	data []int
+}
+
+func newStore(cap int) *store {
+	return &store{
+		data: make([]int, 0, cap),
+	}
 }
 
 func (c *store) Write(data int) {
@@ -50,15 +69,24 @@ func (c *store) Read(index int) int {
 }
 
 type backgingstore struct {
-	data []int
+	data  []int
+	mutex *ticketlock.Mutex
+}
+
+func newBackingStore(cap int) *backgingstore {
+	lock := ticketlock.New()
+	return &backgingstore{
+		data:  make([]int, 0, cap),
+		mutex: &lock,
+	}
 }
 
 func (c *backgingstore) Write(data int) {
-	time.Sleep(2) // disk i/o is slow
+	time.Sleep(100) // disk i/o is slow
 	c.data = append(c.data, data)
 }
 
 func (c *backgingstore) Read(index int) int {
-	time.Sleep(2)
+	time.Sleep(100) // disk io is slow
 	return c.data[index]
 }
