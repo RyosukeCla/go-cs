@@ -56,6 +56,14 @@ func (h *HashTable) Get(key string) interface{} {
 func (h *HashTable) Put(key string, value interface{}) {
 	index := hashFunction(key) % h.slotSize
 	slot := &h.slots[index]
+
+	for _, entry := range slot.entries {
+		if entry.key == key {
+			entry.value = value
+			return
+		}
+	}
+
 	slot.entries = append(slot.entries, entry{
 		key,
 		value,
