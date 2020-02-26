@@ -145,6 +145,8 @@ func (l *List) Remove(node *Node) {
 
 	node.next = nil
 	node.prev = nil
+
+	l.len--
 }
 
 func (l *List) Swap(a, b *Node) {

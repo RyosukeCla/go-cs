@@ -81,3 +81,22 @@ func TestMoveToEnd(t *testing.T) {
 		t.Fatal("error")
 	}
 }
+
+func TestRemove(t *testing.T) {
+	list := New()
+	one := list.InsertBiginning(1)
+	two := list.InsertBiginning(2)
+	three := list.InsertEnd(3)
+
+	// 2 <-> 1 <-> 3
+	list.Remove(one)
+	// 2 <-> 3
+
+	if list.Len() != 2 {
+		t.Fatal("error")
+	}
+
+	if two.Next() != three || three.Prev() != two {
+		t.Fatal("error")
+	}
+}
