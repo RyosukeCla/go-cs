@@ -15,6 +15,7 @@
 
 #### Cache
 - [x] write through/around/back
+- [x] lru
 
 #### Semaphore
 - [x] counting
