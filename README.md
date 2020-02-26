@@ -122,6 +122,9 @@ cryptographic hash
 
 ## Data structures
 
+### List
+- [x] doubly linked list
+
 ### Trees
 - [x] binary search tree
 - [x] heap
