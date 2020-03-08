@@ -3,7 +3,11 @@ package midsquare
 import (
 	"fmt"
 	"strconv"
+
+	"github.com/RyosukeCla/go-cs/pkg/rand"
 )
+
+const MAX_PLUS_ONE float64 = 10000
 
 // Rand for middle square method implementation.
 type Rand struct {
@@ -12,7 +16,7 @@ type Rand struct {
 }
 
 // NewRand returns rand
-func NewRand(n, seed int) *Rand {
+func New(n, seed int) rand.Rand {
 	return &Rand{
 		seed,
 		n,
@@ -20,7 +24,7 @@ func NewRand(n, seed int) *Rand {
 }
 
 // Generate generates pseudorandom. seed is required to be 4 digits number.
-func (r *Rand) Generate() int {
+func (r *Rand) Generate() float64 {
 	digits := r.seed           // n digits seed
 	squared := digits * digits // 2n digits
 	str := fmt.Sprintf("%0*d", 2*r.n, squared)
@@ -29,5 +33,5 @@ func (r *Rand) Generate() int {
 	// update seed
 	r.seed = res
 
-	return res
+	return float64(res) / MAX_PLUS_ONE // map [0,10000) to [0,1)
 }

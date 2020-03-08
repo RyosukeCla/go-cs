@@ -5,8 +5,11 @@ import (
 )
 
 func Test(t *testing.T) {
-	rand := NewRand(123)
+	rand := New(123)
 	for i := 0; i < 1000; i++ {
-		rand.Generate()
+		r := rand.Generate()
+		if 0 < r || r >= 1 {
+			t.Fatal("error")
+		}
 	}
 }

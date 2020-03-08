@@ -2,19 +2,14 @@ package midsquare
 
 import (
 	"testing"
-
-	"github.com/RyosukeCla/go-cs/pkg/hashtable/robinhood"
 )
 
 func Test(t *testing.T) {
-	N := 10
-	seen := robinhood.NewHashTable(uint32(5000))
-	rand := NewRand(4, 9090)
-	for i := 0; i < N; i++ {
+	rand := New(4, 9090)
+	for i := 0; i < 1000; i++ {
 		r := rand.Generate()
-		if seen.Get(string(r)) != nil {
+		if 0 < r || r >= 1 {
 			t.Fatal("error")
 		}
-		seen.Put(string(r), r)
 	}
 }
