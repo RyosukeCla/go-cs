@@ -5,13 +5,14 @@ import (
 	"sort"
 
 	"github.com/RyosukeCla/go-cs/pkg/hash/fnv"
+	"github.com/RyosukeCla/go-cs/pkg/rand"
 	"github.com/RyosukeCla/go-cs/pkg/rand/xorshift"
 )
 
 // HashTable ...
 type HashTable struct {
 	circle circle
-	rnd    *xorshift.Rand
+	rnd    rand.Rand
 }
 
 type circle []node
@@ -41,11 +42,11 @@ const MODULO = 4294967295
 
 func NewHashTable(nodeSize, nodeCapacity uint32) *HashTable {
 	nodes := make([]node, nodeSize, nodeCapacity)
-	rnd := xorshift.NewRand(100)
+	rnd := xorshift.New(100)
 	for i := 0; i < len(nodes); i++ {
 		nodes[i] = node{
 			entries: make([]entry, 0, 10),
-			hash:    rnd.Generate(),
+			hash:    uint32(rnd.Generate() * float64(MODULO)),
 			name:    fmt.Sprintf("n%d", i),
 		}
 	}
@@ -145,7 +146,7 @@ func (h *HashTable) List() {
 func (h *HashTable) AddNode(nodeName string) {
 	node := node{
 		entries: make([]entry, 0, 10),
-		hash:    h.rnd.Generate(),
+		hash:    uint32(h.rnd.Generate() * float64(MODULO)),
 		name:    nodeName,
 	}
 
