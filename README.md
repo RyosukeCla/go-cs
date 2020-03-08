@@ -61,6 +61,10 @@ basic functions
 - [x] cos
 - [x] tan
 
+interpolation
+- [x] linear
+- [x] cosine
+
 numerical calculation
 - [x] newton
 - [ ] quasi newton
@@ -91,6 +95,7 @@ numerical calculation
 - [x] xorshift
 - [ ] mersenne twister
 - [ ] Blum-Blum-Shub
+- [x] perlin noise
 
 ### Version solving
 - [ ] PubGrub
