@@ -18,7 +18,7 @@ const MAX_PLUS_ONE = 4294967296 // 2^32
 /*
 	New returns Rand that implements gsfr.
 	p and q (p > q) have to be selected to satisfy primitive polynomials, such that
-		 x^p + x^1 + 1.
+		x^p + x^1 + 1.
 	And period is 2^p - 1.
 
 	e.g) (p, q) in {(47, 21), (95, 17), (111, 45), ...}
