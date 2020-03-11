@@ -1,9 +1,3 @@
-/*
-reference
-
-	W. H. PAYNE. "Pseudorandom numbers for mini- and microcomputers: A generalized feedback shift register algorithm" Behav. Res.l\Ieth. & Instru.,1973, Vol. 5(2)
-*/
-
 package gsfr
 
 import (
@@ -21,7 +15,17 @@ type Rand struct {
 
 const MAX_PLUS_ONE = 4294967296 // 2^32
 
-// New returns Rand that implements linear congruential generation
+/*
+	New returns Rand that implements gsfr.
+	p and q (p > q) have to be selected to satisfy primitive polynomials, such that
+		 x^p + x^1 + 1.
+	And period is 2^p - 1.
+
+	e.g) (p, q) in {(47, 21), (95, 17), (111, 45), ...}
+
+	further detail:
+		W. H. PAYNE. "Pseudorandom numbers for mini- and microcomputers: A generalized feedback shift register algorithm" Behav. Res.l\Ieth. & Instru.,1973, Vol. 5(2)
+*/
 func New(p, q int, seed uint32) rand.Rand {
 	series := make([]uint32, p+1)
 	r := xorshift.New(seed)
@@ -40,17 +44,17 @@ func New(p, q int, seed uint32) rand.Rand {
 
 // Generate generates rand with gsfr
 func (r *Rand) Generate() float64 {
-	r.k++
-	if r.k > r.p {
+	r.k++          // k <- k + 1
+	if r.k > r.p { // if k > p, set k <- 1
 		r.k = 1
 	}
-	r.j = r.k + r.q
-	if r.j > r.p {
+	r.j = r.k + r.q // j <- k + q
+	if r.j > r.p {  // if j > p, set j <- j - p
 		r.j -= r.p
 	}
 
-	x := r.series[r.k] ^ r.series[r.j]
-	r.series[r.k] = x
+	x := r.series[r.k] ^ r.series[r.j] // S_k xor S_j
+	r.series[r.k] = x                  // store S_k <- S_k xor S_j
 
 	return float64(x) / float64(MAX_PLUS_ONE) // linear map [0,2^32) to map[0,1)
 }
