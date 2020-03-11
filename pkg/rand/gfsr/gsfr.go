@@ -24,7 +24,7 @@ const MAX_PLUS_ONE = 4294967296 // 2^32
 	e.g.) (p, q) in {(47, 21), (95, 17), (111, 45), ...}
 
 	further detail:
-		W. H. PAYNE. "Pseudorandom numbers for mini- and microcomputers: A generalized feedback shift register algorithm" Behav. Res. Meth. & Instru., 1973, Vol. 5(2)
+		Lewis, T. G., & Payne, W. H. Generalized feedback shift register pseudorandom number generator. Journal of the Association for Computing Machinery, 1973, in press.
 */
 func New(p, q int, seed uint32) rand.Rand {
 	series := make([]uint32, p+1)
