@@ -91,9 +91,10 @@ numerical calculation
 ### Pseudorandom
 - [x] midsquare
 - [x] linear congruential generators
-- [ ] linear feedback shift register
-- [x] xorshift
+- [x] gfsr (generalized feedback shift register)
+- [ ] twisted gfsr
 - [ ] mersenne twister
+- [x] xorshift
 - [ ] Blum-Blum-Shub
 - [x] perlin noise
 
