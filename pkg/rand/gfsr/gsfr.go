@@ -21,7 +21,7 @@ const MAX_PLUS_ONE = 4294967296 // 2^32
 		x^p + x^1 + 1.
 	And period is 2^p - 1.
 
-	e.g) (p, q) in {(47, 21), (95, 17), (111, 45), ...}
+	e.g.) (p, q) in {(47, 21), (95, 17), (111, 45), ...}
 
 	further detail:
 		W. H. PAYNE. "Pseudorandom numbers for mini- and microcomputers: A generalized feedback shift register algorithm" Behav. Res.l\Ieth. & Instru.,1973, Vol. 5(2)
