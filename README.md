@@ -92,7 +92,7 @@ numerical calculation
 - [x] midsquare
 - [x] linear congruential generators
 - [x] gfsr (generalized feedback shift register)
-- [ ] twisted gfsr
+- [x] twisted gfsr
 - [ ] mersenne twister
 - [x] xorshift
 - [ ] Blum-Blum-Shub
