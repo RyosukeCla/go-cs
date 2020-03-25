@@ -77,6 +77,9 @@ numerical calculation
 - [ ] Leap-Frog
 - [ ] Runge–Kutta
 
+descrete logarithm
+- [x] greedy
+
 ### Optimization
 - [ ] Simulated Annealing
 - [ ] genetic algorithm
