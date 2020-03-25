@@ -77,8 +77,11 @@ numerical calculation
 - [ ] Leap-Frog
 - [ ] Runge–Kutta
 
-descrete logarithm
+descrete logarithm problem (dlp)
 - [x] greedy
+
+elliptic curve dlp (ecdlp)
+- [ ] hoge
 
 ### Optimization
 - [ ] Simulated Annealing
