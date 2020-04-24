@@ -66,6 +66,14 @@ basic functions
 - [x] arccos
 - [x] arctan
 
+complex number
+- [ ] test
+- [x] add, sub, mul, div
+- [x] abs, arg
+- [x] reciprocal, conjugate
+- [x] euler
+- [x] equal
+
 interpolation
 - [x] linear
 - [x] cosine
