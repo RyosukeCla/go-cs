@@ -10,9 +10,9 @@ type Complex struct {
 }
 
 func New(re, im float64) *Complex {
-	return Complex{
+	return &Complex{
 		Re: re,
-		Im: rm,
+		Im: im,
 	}
 }
 
@@ -28,9 +28,9 @@ func NewIm(im float64) *Complex {
 func Euler(z *Complex) *Complex {
 	cf := math.Exp(z.Re)
 
-	return *Complex{
+	return &Complex{
 		Re: cf * math.Cos(z.Im),
-		Im: cf * math.Sin(z.Im)
+		Im: cf * math.Sin(z.Im),
 	}
 }
 
@@ -54,7 +54,7 @@ func Arg(z *Complex) float64 {
 
 // Add returns a + b
 func Add(a *Complex, b *Complex) *Complex {
-	return *Complex{
+	return &Complex{
 		Re: a.Re + b.Re,
 		Im: a.Im + b.Im,
 	}
@@ -62,7 +62,7 @@ func Add(a *Complex, b *Complex) *Complex {
 
 // Sub returns a - b
 func Sub(a *Complex, b *Complex) *Complex {
-	return *Complex{
+	return &Complex{
 		Re: a.Re - b.Re,
 		Im: a.Im - b.Im,
 	}
@@ -70,7 +70,7 @@ func Sub(a *Complex, b *Complex) *Complex {
 
 // Mul returns a * b
 func Mul(a *Complex, b *Complex) *Complex {
-	return *Complex{
+	return &Complex{
 		Re: a.Re * b.Re - a.Im * b.Im,
 		Im: a.Re * b.Im + a.Im * b.Re,
 	}
@@ -79,7 +79,7 @@ func Mul(a *Complex, b *Complex) *Complex {
 // Reciprocal returns 1 / a
 func Reciprocal(a *Complex) *Complex {
 	cf := 1 / (a.Re * a.Re + a.Im + a.Im)
-	return *Complex{
+	return &Complex{
 		Re: cf * a.Re,
 		Im: - cf * a.Im,
 	}
@@ -92,7 +92,7 @@ func Div(a *Complex, b *Complex) *Complex {
 
 // Conjugate returns conjugate of a
 func Conjugate(a *Complex) *Complex {
-	return *Complex{
+	return &Complex{
 		Re: a.Re,
 		Im: -a.Im,
 	}
