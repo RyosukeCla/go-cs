@@ -19,6 +19,30 @@ func TestFactorial(t *testing.T) {
 	}
 }
 
+func TestPerm(t *testing.T) {
+	if Perm(5, 3) != 60 {
+		t.Fatal("Error", Perm(5, 3))
+	}
+
+	if Perm(16, 9) != 4151347200 {
+		t.Fatal("Error", Perm(16, 9))
+	}
+
+	if Comb(0, 0) != 1 {
+		t.Fatal("Error")
+	}
+}
+
+func TestComb(t *testing.T) {
+	if Comb(7, 3) != 35 {
+		t.Fatal("Error")
+	}
+
+	if Comb(0, 0) != 1 {
+		t.Fatal("Error")
+	}
+}
+
 func TestAbs(t *testing.T) {
 	if Abs(5) != 5 {
 		t.Fatal("Error")
@@ -162,5 +186,23 @@ func TestCos(t *testing.T) {
 func TestTan(t *testing.T) {
 	if Abs(Tan(1.0)-1.55740772465) > 0.0000001 {
 		t.Fatal("Error", Tan(1.0))
+	}
+}
+
+func TestArcsin(t *testing.T) {
+	if Abs(Arcsin(0.5)-0.52359878) > 0.0000001 {
+		t.Fatal("Error", Arcsin(0.5))
+	}
+}
+
+func TestArccos(t *testing.T) {
+	if Abs(Arccos(0.5)-1.04719755) > 0.0000001 {
+		t.Fatal("Error", Arccos(0.5))
+	}
+}
+
+func TestArctan(t *testing.T) {
+	if Abs(Arctan(0.5)-0.46364761) > 0.0000001 {
+		t.Fatal("Error", Arctan(0.5))
 	}
 }

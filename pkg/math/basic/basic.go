@@ -8,11 +8,31 @@ const LN2 float64 = 0.6931471805599453094172321214581765680755001343602552541206
 const LN10 float64 = 2.30258509299404568401799145468436420760110148862877297603332790
 
 // Factorial returns n!
-func Factorial(n int) int {
+func Factorial(n int64) int64 {
 	if n <= 1 {
 		return 1
 	}
 	return n * Factorial(n-1)
+}
+
+// Perm returns a P b (Permutation)
+func Perm(a, b int64) int64 {
+	res := int64(1)
+	for i := a; i >= a-b+1; i-- {
+		res *= i
+	}
+
+	return res
+}
+
+// Comb returns a C b (Combination)
+func Comb(a, b int64) int64 {
+	return Perm(a, b) / Factorial(b)
+}
+
+// BinoimialCf is alias of Comb (Binoimial Coefficient)
+func BinoimialCf(a, b int64) int64 {
+	return Comb(a, b)
 }
 
 // Abs returns absolute value of x
@@ -153,4 +173,26 @@ func Cos(x float64) float64 {
 // Tan returns tan(x) = sin(x) / cos(x)
 func Tan(x float64) float64 {
 	return Sin(x) / Cos(x)
+}
+
+// Arcsin returns arcsin(x) x in [-1,1]
+func Arcsin(x float64) float64 {
+	res := x
+	preX := x
+	for i := 1; i < 10; i++ {
+		preX = preX * x * x
+		cf := 1 / Power(4.0, float64(i)) * float64(BinoimialCf(int64(2*i), int64(i))) / float64(2*i+1)
+		res += cf * preX
+	}
+	return res
+}
+
+// Arccos returns arccos(x) x in [-1,1]
+func Arccos(x float64) float64 {
+	return HALF_PI - Arcsin(x)
+}
+
+// Arctan returns arctan(x) x in [-1,1]
+func Arctan(x float64) float64 {
+	return Arcsin(x / Sqrt(x*x+1))
 }
