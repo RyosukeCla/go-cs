@@ -48,6 +48,8 @@
 
 basic functions
 - [x] factorial
+- [x] combination
+- [x] permutation
 - [x] absolute
 - [x] square
 - [x] ceil
@@ -60,6 +62,9 @@ basic functions
 - [x] sin
 - [x] cos
 - [x] tan
+- [x] arcsin
+- [x] arccos
+- [x] arctan
 
 interpolation
 - [x] linear
