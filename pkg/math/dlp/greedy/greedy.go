@@ -1,3 +1,5 @@
+// discrete logarithm problem
+
 package greedy
 
 // Find finds s s.t. g^s = y and y, g in Z mod p
