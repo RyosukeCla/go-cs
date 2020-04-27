@@ -66,6 +66,9 @@ basic functions
 - [x] arcsin
 - [x] arccos
 - [x] arctan
+- [x] almost equal
+  - [x] epsilon comparison 
+  - [ ] unit in the last place: https://en.wikipedia.org/wiki/Unit_in_the_last_place
 
 complex number
 - [ ] test
