@@ -175,6 +175,11 @@ func Tan(x float64) float64 {
 	return Sin(x) / Cos(x)
 }
 
+// Sinc returns sinc x := sin x / x
+func Sinc(x float64) float64 {
+	return Sin(x) / x
+}
+
 // Arcsin returns arcsin(x) x in [-1,1]
 func Arcsin(x float64) float64 {
 	res := x

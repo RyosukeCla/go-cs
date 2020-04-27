@@ -62,6 +62,7 @@ basic functions
 - [x] sin
 - [x] cos
 - [x] tan
+- [x] sinc
 - [x] arcsin
 - [x] arccos
 - [x] arctan
