@@ -105,3 +105,11 @@ func Equal(a *Complex, b *Complex) bool {
 	}
 	return true
 }
+
+// AlmostEqual is epsilon comparison
+func AlmostEqual(a *Complex, b *Complex) bool {
+	if !math.AlmostEqual(a.Re, b.Re) || !math.AlmostEqual(a.Im, b.Im) {
+		return false
+	}
+	return true
+}

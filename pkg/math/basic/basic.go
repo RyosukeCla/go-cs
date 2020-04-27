@@ -6,6 +6,16 @@ const HALF_PI float64 = PI / 2.0
 const E float64 = 2.71828182845904523536028747135266249775724709369995957496696763
 const LN2 float64 = 0.693147180559945309417232121458176568075500134360255254120680009
 const LN10 float64 = 2.30258509299404568401799145468436420760110148862877297603332790
+const FLOAT64_TOLERANCE = 0.0000000001
+
+// AlmostEqual is epsilon comparison
+func AlmostEqual(a, b float64) bool {
+	if Abs(a-b) < FLOAT64_TOLERANCE {
+		return true
+	}
+
+	return false
+}
 
 // Factorial returns n!
 func Factorial(n int64) int64 {
