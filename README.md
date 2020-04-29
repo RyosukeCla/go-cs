@@ -176,6 +176,7 @@ cryptographic hash
   - wiredtiger: https://github.com/wiredtiger/wiredtiger/wiki/LSMTrees-Bloom
   - Building a Better Bloom Filter: https://www.eecs.harvard.edu/~michaelm/postscripts/rsa2008.pdf
 - [x] counting filter
+- [ ] cuckoo filter
 - [ ] xorfilter
 
 ## Etc
