@@ -2,7 +2,9 @@
 
 package md5
 
-import "github.com/RyosukeCla/go-cs/pkg/math/basic"
+import (
+	"github.com/RyosukeCla/go-cs/pkg/math/basic"
+)
 
 func createTable() []uint32 {
 	table := make([]uint32, 64)
@@ -53,7 +55,7 @@ func getLowOrderWordsFromLength(length int) []byte {
 
 func bytesToWords(bytes []byte) []uint32 {
 	length := 8 * len(bytes) / 32
-	words := make([]uint32, 0, length)
+	words := make([]uint32, length, length)
 	for i := 0; i < length; i++ {
 		j := i * 4
 		words[i] = (uint32(bytes[j+3]) << 24) + (uint32(bytes[j+2]) << 16) + (uint32(bytes[j+1]) << 8) + uint32(bytes[j])

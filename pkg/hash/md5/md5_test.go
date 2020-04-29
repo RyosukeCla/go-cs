@@ -1,7 +1,10 @@
 package md5
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
 
 func TestEncode(t *testing.T) {
-
+	fmt.Println(Hash([]byte("message")))
 }
