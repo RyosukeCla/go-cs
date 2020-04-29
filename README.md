@@ -142,7 +142,7 @@ uncryptographic hash
 - [x] fnv
 
 cryptographic hash
-- [ ] md5
+- [x] md5
 - [ ] sha-1
 - [ ] ripemd-160
 - [ ] bcrypt
