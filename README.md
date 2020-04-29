@@ -172,9 +172,10 @@ cryptographic hash
 - [ ] wavelet matrix 
 
 ## Probabilistic Data Structures
-- [ ] bloom filter
+- [x] bloom filter
   - wiredtiger: https://github.com/wiredtiger/wiredtiger/wiki/LSMTrees-Bloom
   - Building a Better Bloom Filter: https://www.eecs.harvard.edu/~michaelm/postscripts/rsa2008.pdf
+- [ ] xorfilter
 
 ## Etc
 - [x] bits
