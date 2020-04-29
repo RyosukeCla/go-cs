@@ -19,16 +19,16 @@ func New(m, k int) *BloomFilter {
 	}
 }
 
-func (bf *BloomFilter) Add(item []byte) {
+func (bf *BloomFilter) Add(key []byte) {
 	for i := 0; i < bf.k; i++ {
-		index := hash(item, i) % bf.m
+		index := hash(key, i) % bf.m
 		bf.bits[index] = true
 	}
 }
 
-func (bf *BloomFilter) Check(item []byte) bool {
+func (bf *BloomFilter) Check(key []byte) bool {
 	for i := 0; i < bf.k; i++ {
-		index := hash(item, i) % bf.m
+		index := hash(key, i) % bf.m
 		if bf.bits[index] == false {
 			return false
 		}
