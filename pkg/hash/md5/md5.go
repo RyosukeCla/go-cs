@@ -6,6 +6,8 @@ import (
 	"github.com/RyosukeCla/go-cs/pkg/math/basic"
 )
 
+var T = createTable()
+
 func createTable() []uint32 {
 	table := make([]uint32, 64)
 	for i := 1; i < 64; i++ {
@@ -84,7 +86,6 @@ func Hash(message []byte) []uint32 {
 	B := uint32(0xEFCDAB89)
 	C := uint32(0x98BADCFE)
 	D := uint32(0x10325476)
-	T := createTable()
 
 	for i := 0; i < wordsLength/16; i++ {
 		X := words[16*i : 16*i+16]
