@@ -19,7 +19,7 @@ type entry struct {
 func New(size int) *Cockoo {
 	t1 := make([]*entry, size, size)
 	t2 := make([]*entry, size, size)
-	maxLoop := int(math.Log(1+10, float64(size)))
+	maxLoop := int(math.Log(1+0.05, float64(size)))
 	return &Cockoo{
 		t1,
 		t2,
