@@ -165,6 +165,7 @@ cryptographic hash
 ### hashtable
 - [x] robin hood hashing
 - [x] consistent-hashing
+- [x] cockoo hashing
 
 ## Succinct Data Struture
 - [x] bit vector
@@ -176,8 +177,9 @@ cryptographic hash
   - wiredtiger: https://github.com/wiredtiger/wiredtiger/wiki/LSMTrees-Bloom
   - Building a Better Bloom Filter: https://www.eecs.harvard.edu/~michaelm/postscripts/rsa2008.pdf
 - [x] counting filter
+- [ ] quotient filter
 - [ ] cuckoo filter
-- [ ] xorfilter
+- [ ] xor filter
 
 ## Etc
 - [x] bits
