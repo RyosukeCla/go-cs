@@ -15,7 +15,26 @@
 
 #### Cache
 - [x] write through/around/back
-- [x] lru
+
+##### Cache Eviction Policies
+- [ ] fifo (Firstly In, First Out)
+- [ ] lifo (Last In, First out)
+- [x] lru (Least Recently Used)
+- [ ] tlru (Time aware Least Recently Used)
+- [ ] mru (Most Recently Used)
+- [ ] plru (Pseudo LRU)
+- [ ] rr (Random Replacement)
+- [ ] slru (Segmented LRU)
+- [ ] lfu (Least Frequently Used)
+- [ ] lfuda (LFU with Dynamic Aging)
+- [ ] lirs (Low Inter-reference Recency Set)
+- [ ] clockpro
+- [ ] arc (Adaptive Replacement Cache)
+- [ ] ac (Adaptive Climb)
+- [ ] car (Adaptive Climb)
+- [ ] mq (Multi Queue)
+- [ ] lfd (Longest Forward Distance)
+- [ ] fwf (Flush When Full)
 
 #### Semaphore
 - [x] counting
