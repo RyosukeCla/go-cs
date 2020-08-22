@@ -36,6 +36,11 @@
 - [ ] lfd (Longest Forward Distance)
 - [ ] fwf (Flush When Full)
 
+#### Rate Limiter
+- [x] array push
+- [ ] increment
+- see https://redis.io/commands/incr
+
 #### Semaphore
 - [x] counting
 - [ ] weighted
