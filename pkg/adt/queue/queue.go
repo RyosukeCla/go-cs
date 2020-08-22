@@ -20,7 +20,7 @@ func (l *List) Enqueue(value interface{}) {
 }
 
 func (l *List) Dequeue() interface{} {
-	lastValue := l.slice[0]
+	firstValue := l.slice[0]
 	l.slice = l.slice[1:]
-	return lastValue
+	return firstValue
 }
