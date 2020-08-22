@@ -18,7 +18,7 @@
 
 ##### Cache Eviction Policies
 - [x] fifo (Firstly In, First Out)
-- [ ] lifo (Last In, First out)
+- [x] lifo (Last In, First out)
 - [x] lru (Least Recently Used)
 - [ ] tlru (Time aware Least Recently Used)
 - [ ] mru (Most Recently Used)
