@@ -174,6 +174,7 @@ cryptographic hash
 ### List
 - [x] doubly linked list
 - [x] queue
+- [x] stack 
 
 ### Trees
 - [x] binary search tree
