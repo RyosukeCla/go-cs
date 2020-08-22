@@ -173,6 +173,7 @@ cryptographic hash
 
 ### List
 - [x] doubly linked list
+- [x] queue
 
 ### Trees
 - [x] binary search tree
