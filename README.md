@@ -20,7 +20,7 @@
 - [x] fifo (Firstly In, First Out)
 - [x] lifo (Last In, First out)
 - [x] lru (Least Recently Used)
-- [ ] tlru (Time aware Least Recently Used)
+- [x] tlru (Time aware Least Recently Used)
 - [ ] mru (Most Recently Used)
 - [ ] plru (Pseudo LRU)
 - [ ] rr (Random Replacement)
