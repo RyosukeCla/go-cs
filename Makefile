@@ -22,6 +22,9 @@ test-bits:
 test-coding:
 	go test ./pkg/coding/?*/
 
+test-cache:
+	go test ./pkg/cache/?*/
+
 test-adt:
 	go test ./pkg/adt/?*/
 
