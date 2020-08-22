@@ -17,7 +17,7 @@
 - [x] write through/around/back
 
 ##### Cache Eviction Policies
-- [ ] fifo (Firstly In, First Out)
+- [x] fifo (Firstly In, First Out)
 - [ ] lifo (Last In, First out)
 - [x] lru (Least Recently Used)
 - [ ] tlru (Time aware Least Recently Used)
