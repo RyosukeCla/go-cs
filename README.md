@@ -68,6 +68,10 @@
 - [ ] lzw
 - [x] base64
 
+### Diff
+- [ ] dp
+- [ ] myers's diff
+
 ### Math
 
 basic functions
