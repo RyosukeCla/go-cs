@@ -1,13 +1,26 @@
 # go computer science playground
 
 ## Algorithms
-### Distributed systems algorithms
+### Distributed Computing
 
 [doc](./pkg/distributed)
 
 #### Database
 
 - [ ] MultiVersion Concurrency Control
+- [ ] Gossip Protocol
+- [ ] Atomic Commit
+
+#### Model
+
+- [ ] message passing model
+
+#### Leader Election
+
+#### Consensus
+
+- [ ] Paxos
+- [ ] Raft
 
 #### Mutex (Mutual exclution)
 - [x] spin lock
