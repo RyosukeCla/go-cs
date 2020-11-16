@@ -51,7 +51,7 @@
 
 #### Rate Limiter
 - [x] array push
-- [ ] increment
+- [x] increment
 - see https://redis.io/commands/incr
 
 #### Semaphore
