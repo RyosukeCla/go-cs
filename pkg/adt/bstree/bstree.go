@@ -1,130 +1,161 @@
 package bstree
 
 // BSTree is binary search tree
-type BSTree struct {
-	root *node
+type BSTree[V interface{}] struct {
+	root       *Node[V]
+	comparator func(V, V) int
 }
 
-type node struct {
-	value int
-	left  *node
-	right *node
+type Node[V interface{}] struct {
+	Value V
+	Left  *Node[V]
+	Right *Node[V]
+}
+
+func NumberComparator[V int | int8 | int16 | int32 | int64 | uint | uint8 | uint16 | uint32 | uint64 | float32 | float64](left V, right V) int {
+	if left == right {
+		return 0
+	} else if left < right {
+		return -1
+	}
+	return 1
 }
 
 // NewBSTree return BSTree
-func NewBSTree() BSTree {
-	return BSTree{}
+func NewBSTree[V interface{}](comparator func(V, V) int) BSTree[V] {
+	return BSTree[V]{
+		comparator: comparator,
+	}
 }
 
 // Insert inserts value
-func (t *BSTree) Insert(value int) {
+func (t *BSTree[V]) Insert(value V) {
 	if t.root == nil {
-		t.root = &node{
-			value: value,
+		t.root = &Node[V]{
+			Value: value,
 		}
 	} else {
-		insert(t.root, &node{
-			value: value,
+		t.insert(t.root, &Node[V]{
+			Value: value,
 		})
 	}
 }
 
 // Search searchs value
-func (t *BSTree) Search(value int) bool {
-	return search(t.root, value)
+func (t *BSTree[V]) Search(value V) bool {
+	return t.search(t.root, value)
+}
+
+func (t *BSTree[V]) Walk(walker func(node *Node[V]) int) {
+	walk(t.root, walker)
 }
 
 // Remove removes value
-func (t *BSTree) Remove(value int) {
+func (t *BSTree[V]) Remove(value V) {
 	if t.root == nil {
 		return
-	} else if t.root.value == value {
-		t.root = swap(t.root)
-	} else if t.root.value < value {
-		remove(t.root.right, value)
+	} else if t.comparator(t.root.Value, value) == 0 {
+		t.root = t.swap(t.root)
+	} else if t.comparator(t.root.Value, value) == -1 {
+		t.remove(t.root.Right, value)
 	} else {
-		remove(t.root.left, value)
+		t.remove(t.root.Left, value)
 	}
 }
 
 // Min returns min value
-func (t *BSTree) Min() int {
+func (t *BSTree[V]) Min() V {
 	if t.root == nil {
 		panic("error")
 	}
-	return mostLeft(t.root)
+	return t.mostLeft(t.root)
 }
 
 // Max returns max value
-func (t *BSTree) Max() int {
+func (t *BSTree[V]) Max() V {
 	if t.root == nil {
 		panic("error")
 	}
-	return mostRight(t.root)
+	return t.mostRight(t.root)
 }
 
-func insert(parent *node, child *node) {
-	if parent.value < child.value {
-		if parent.right == nil {
-			parent.right = child
+func walk[V interface{}](n *Node[V], walker func(n *Node[V]) int) {
+	if n == nil {
+		return
+	}
+	compared := walker(n)
+	if compared == 0 {
+		return
+	}
+	if compared < 0 {
+		walk(n.Left, walker)
+	} else {
+		walk(n.Right, walker)
+	}
+}
+
+func (t *BSTree[V]) insert(parent *Node[V], child *Node[V]) {
+	if t.comparator(parent.Value, child.Value) == -1 {
+		if parent.Right == nil {
+			parent.Right = child
 		} else {
-			insert(parent.right, child)
+			t.insert(parent.Right, child)
 		}
 	} else {
-		if parent.left == nil {
-			parent.left = child
+		if parent.Left == nil {
+			parent.Left = child
 		} else {
-			insert(parent.left, child)
+			t.insert(parent.Left, child)
 		}
 	}
 }
 
-func search(parent *node, value int) bool {
+func (t *BSTree[V]) search(parent *Node[V], value V) bool {
 	if parent == nil {
 		return false
-	} else if parent.value == value {
+	} else if t.comparator(parent.Value, value) == 0 {
 		return true
-	} else if parent.value < value {
-		return search(parent.right, value)
+	} else if t.comparator(parent.Value, value) == -1 {
+		return t.search(parent.Right, value)
 	} else {
-		return search(parent.left, value)
+		return t.search(parent.Left, value)
 	}
 }
 
-func remove(parent *node, value int) {
-	if parent.right == nil || parent.left == nil {
+func (t *BSTree[V]) remove(parent *Node[V], value V) {
+	if parent.Right == nil || parent.Left == nil {
 		return
-	} else if parent.right.value == value {
-		parent.right = swap(parent.right)
-	} else if parent.left.value == value {
-		parent.left = swap(parent.left)
-	} else if parent.right.value > value {
-		remove(parent.right, value)
-	} else if parent.left.value < value {
-		remove(parent.left, value)
+	} else if t.comparator(parent.Right.Value, value) == 0 {
+		parent.Right = t.swap(parent.Right)
+	} else if t.comparator(parent.Left.Value, value) == 0 {
+		parent.Left = t.swap(parent.Left)
+	} else if t.comparator(parent.Right.Value, value) == 1 {
+		t.remove(parent.Right, value)
+	} else if t.comparator(parent.Left.Value, value) == -1 {
+		t.remove(parent.Left, value)
 	}
 }
 
-func swap(parent *node) *node {
-	if parent.right == nil || parent.left == nil {
+func (t *BSTree[V]) swap(parent *Node[V]) *Node[V] {
+	if parent.Right == nil || parent.Left == nil {
 		return nil
-	} else if parent.right != nil {
-		return parent.right
+	} else if parent.Right != nil {
+		return parent.Right
 	} else {
-		return parent.left
+		return parent.Left
 	}
 }
 
-func mostLeft(parent *node) int {
-	if parent.left == nil {
-		return parent.value
+func (t *BSTree[V]) mostLeft(parent *Node[V]) V {
+	if parent.Left == nil {
+		return parent.Value
 	}
-	return mostLeft(parent.left)
+	return t.mostLeft(parent.Left)
 }
 
-func mostRight(parent *node) int {
-	if parent.right == nil {
-		return parent.value
+func (t *BSTree[V]) mostRight(parent *Node[V]) V {
+	if parent.Right == nil {
+		return parent.Value
 	}
-	return mostRight(parent.right)
+	return t.mostRight(parent.Right)
 }

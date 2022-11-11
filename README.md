@@ -108,7 +108,7 @@ basic functions
 - [x] arccos
 - [x] arctan
 - [x] almost equal
-  - [x] epsilon comparison 
+  - [x] epsilon comparison
   - [ ] unit in the last place: https://en.wikipedia.org/wiki/Unit_in_the_last_place
 
 complex number
@@ -196,7 +196,7 @@ cryptographic hash
 ### List
 - [x] doubly linked list
 - [x] queue
-- [x] stack 
+- [x] stack
 
 ### Trees
 - [x] binary search tree
@@ -207,13 +207,13 @@ cryptographic hash
 
 ### hashtable
 - [x] robin hood hashing
-- [x] consistent-hashing
+- [x] consistent-hashing with treap (get operation: O(lon N))
 - [x] cockoo hashing
 
 ## Succinct Data Struture
 - [x] bit vector
 - [ ] wavelet tree
-- [ ] wavelet matrix 
+- [ ] wavelet matrix
 
 ## Probabilistic Data Structures
 - [x] bloom filter

@@ -1,59 +1,40 @@
 package consistent
 
 import (
-	"fmt"
-	"sort"
-
+	"github.com/RyosukeCla/go-cs/pkg/adt/treap"
 	"github.com/RyosukeCla/go-cs/pkg/hash/fnv"
-	"github.com/RyosukeCla/go-cs/pkg/rand"
-	"github.com/RyosukeCla/go-cs/pkg/rand/xorshift"
 )
 
 // HashTable ...
 type HashTable struct {
-	circle circle
-	rnd    rand.Rand
-}
-
-type circle []node
-
-func (c circle) Len() int {
-	return len(c)
-}
-func (f circle) Less(i, j int) bool {
-	return f[i].hash < f[j].hash
-}
-func (f circle) Swap(i, j int) {
-	f[i], f[j] = f[j], f[i]
+	circle treap.Treap[node]
 }
 
 type node struct {
-	entries []entry
-	hash    uint32
-	name    string
+	hash uint32
+	name string
 }
 
-type entry struct {
-	key   string
-	value interface{}
-}
-
-const MODULO = 4294967295
-
-func NewHashTable(nodeSize, nodeCapacity uint32) *HashTable {
-	nodes := make([]node, nodeSize, nodeCapacity)
-	rnd := xorshift.New(100)
-	for i := 0; i < len(nodes); i++ {
-		nodes[i] = node{
-			entries: make([]entry, 0, 10),
-			hash:    uint32(rnd.Generate() * float64(MODULO)),
-			name:    fmt.Sprintf("n%d", i),
-		}
+func NewHashTable(nodeNames []string) *HashTable {
+	circle := treap.NewTreap(comparator)
+	for i := 0; i < len(nodeNames); i++ {
+		circle.Insert(node{
+			hash: hashFunction(nodeNames[i]),
+			name: nodeNames[i],
+		})
 	}
-	sort.Sort(circle(nodes))
 	return &HashTable{
-		circle: nodes,
-		rnd:    rnd,
+		circle: circle,
+	}
+}
+
+func comparator(left node, right node) int {
+	if left.hash < right.hash {
+		return -1
+	} else if left.hash > right.hash {
+		return 1
+	} else {
+		return 0
 	}
 }
 
@@ -62,104 +43,45 @@ func hashFunction(value string) uint32 {
 	return fnv.Hash(bytes)
 }
 
-func (h *HashTable) Get(key string) interface{} {
-	hash := hashFunction(key) % MODULO
-	n := len(h.circle)
-	// 1 to n-1 th nodes
-	for i := 1; i < n; i++ {
-		if h.circle[i-1].hash < hash && hash <= h.circle[i].hash { // find most neighbor node
-			for _, entry := range h.circle[i].entries {
-				if entry.key == key {
-					return entry.value
-				}
-			}
-			return nil
+func (h *HashTable) Get(key string) *string {
+	hash := hashFunction(key)
+	var neighborNode *node
+	h.circle.Walk(func(node *treap.Node[node]) int {
+		if hash == node.Value.hash {
+			neighborNode = &node.Value
+			return 0
+		} else if hash < node.Value.hash {
+			// search left
+			neighborNode = &node.Value
+			return -1
+		} else if node.Value.hash < hash {
+			// search right
+			return 1
 		}
-	}
-	// 0th node
-	for _, entry := range h.circle[0].entries {
-		if entry.key == key {
-			return entry.value
-		}
-	}
-	return nil
-}
-
-func (h *HashTable) Put(key string, value interface{}) {
-	hash := hashFunction(key) % MODULO
-	n := len(h.circle)
-	// 1 to n-1 th nodes
-	for i := 1; i < n; i++ {
-		if h.circle[i-1].hash < hash && hash <= h.circle[i].hash { // find most neighbor node
-			h.circle[i].entries = append(h.circle[i].entries, entry{
-				key,
-				value,
-			})
-			return
-		}
-	}
-
-	// 0th node
-	h.circle[0].entries = append(h.circle[0].entries, entry{
-		key,
-		value,
+		return 1
 	})
-}
-
-func (h *HashTable) Erase(key string) {
-	hash := hashFunction(key) % MODULO
-	n := len(h.circle)
-
-	// 1 to n-1 th nodes
-	for i := 1; i < n; i++ {
-		if h.circle[i-1].hash < hash && hash <= h.circle[i].hash { // find most neighbor node
-			for index, entry := range h.circle[i].entries {
-				if entry.key == key {
-					entries := h.circle[i].entries
-					entries[0], entries[index] = entries[index], entries[0] // swap
-					h.circle[i].entries = entries[1:]                       // erace
-					return
-				}
-			}
-			return
-		}
+	if neighborNode == nil {
+		_node := h.circle.Min()
+		neighborNode = _node
 	}
-
-	// 0th node
-	for index, entry := range h.circle[0].entries {
-		if entry.key == key {
-			entries := h.circle[0].entries
-			entries[0], entries[index] = entries[index], entries[0] // swap
-			h.circle[0].entries = entries[1:]                       // erace
-			return
-		}
+	if neighborNode == nil {
+		return nil
 	}
-}
-
-func (h *HashTable) List() {
-	n := len(h.circle)
-	for i := 1; i < n; i++ {
-		fmt.Println(h.circle[i].name, h.circle[i].hash, len(h.circle[i].entries))
-	}
+	return &neighborNode.name
 }
 
 func (h *HashTable) AddNode(nodeName string) {
 	node := node{
-		entries: make([]entry, 0, 10),
-		hash:    uint32(h.rnd.Generate() * float64(MODULO)),
-		name:    nodeName,
+		hash: hashFunction(nodeName),
+		name: nodeName,
 	}
-
-	n := len(h.circle)
-	for i := 1; i < n; i++ {
-		if h.circle[i-1].hash < node.hash && node.hash <= h.circle[i].hash { // find most neighbor node
-			return
-		}
-	}
-
-	sort.Sort(h.circle)
+	h.circle.Insert(node)
 }
 
 func (h *HashTable) RemoveNode(nodeName string) {
-
+	node := node{
+		hash: hashFunction(nodeName),
+		name: nodeName,
+	}
+	h.circle.Remove(node)
 }

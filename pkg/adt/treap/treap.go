@@ -5,120 +5,169 @@ import (
 )
 
 // Treap is treap
-type Treap struct {
-	root *node
+type Treap[V interface{}] struct {
+	root       *Node[V]
+	comparator func(V, V) int
 }
 
-type node struct {
-	key   int
-	value int
-	left  *node
-	right *node
+type Node[V interface{}] struct {
+	priority int
+	Value    V
+	Left     *Node[V]
+	Right    *Node[V]
 }
 
 // NewTreap return Treap
-func NewTreap() Treap {
-	return Treap{}
+func NewTreap[V interface{}](comparator func(V, V) int) Treap[V] {
+	return Treap[V]{
+		comparator: comparator,
+	}
 }
 
 // Insert inserts node
-func (t *Treap) Insert(key int) {
-	t.root = insert(t.root, key)
+func (t *Treap[V]) Insert(value V) {
+	t.root = insert(t.root, value, t.comparator)
 }
 
 // Search searches noe
-func (t *Treap) Search(key int) bool {
-	return search(t.root, key)
+func (t *Treap[V]) Search(value V) bool {
+	return search(t.root, value, t.comparator)
 }
 
 // Remove removes node
-func (t *Treap) Remove(key int) {
-	t.root = remove(t.root, key)
+func (t *Treap[V]) Remove(value V) {
+	t.root = remove(t.root, value, t.comparator)
 }
 
-func insert(root *node, key int) *node {
-	if root == nil {
-		return createNode(key)
+func (t *Treap[V]) Min() *V {
+	if t.root == nil {
+		return nil
 	}
+	res := mostLeft(t.root)
+	return &res
+}
 
-	if key < root.key {
-		root.left = insert(root.left, key)
+func (t *Treap[V]) Max() *V {
+	if t.root == nil {
+		return nil
+	}
+	res := mostRight(t.root)
+	return &res
+}
 
-		if root.left.value > root.value {
+func (t *Treap[V]) Walk(walker func(node *Node[V]) int) {
+	walk(t.root, walker)
+}
+
+func walk[V interface{}](n *Node[V], walker func(n *Node[V]) int) {
+	if n == nil {
+		return
+	}
+	compared := walker(n)
+	if compared == 0 {
+		return
+	}
+	if compared < 0 {
+		walk(n.Left, walker)
+	} else {
+		walk(n.Right, walker)
+	}
+}
+
+func insert[V interface{}](root *Node[V], value V, comparator func(V, V) int) *Node[V] {
+	if root == nil {
+		return createNode(value)
+	}
+	if comparator(root.Value, value) >= 0 {
+		root.Left = insert(root.Left, value, comparator)
+		if root.Left.priority > root.priority {
 			root = rightRotate(root)
 		}
 	} else {
-		root.right = insert(root.right, key)
-
-		if root.right.value > root.value {
+		root.Right = insert(root.Right, value, comparator)
+		if root.Right.priority > root.priority {
 			root = leftRotate(root)
 		}
 	}
-
 	return root
 }
 
-func rightRotate(root *node) *node {
-	newRoot := root.left
-	tree := newRoot.right
-	newRoot.right = root
-	root.left = tree
+func rightRotate[V interface{}](root *Node[V]) *Node[V] {
+	newRoot := root.Left
+	tree := newRoot.Right
+	// rotation
+	newRoot.Right = root
+	root.Left = tree
 	return newRoot
 }
 
-func leftRotate(root *node) *node {
-	newRoot := root.right
-	tree := newRoot.left
-	newRoot.left = root
-	root.right = tree
+func leftRotate[V interface{}](root *Node[V]) *Node[V] {
+	newRoot := root.Right
+	tree := newRoot.Left
+	// rotation
+	newRoot.Left = root
+	root.Right = tree
 	return newRoot
 }
 
-func search(parent *node, key int) bool {
+func search[V interface{}](parent *Node[V], value V, comparator func(V, V) int) bool {
 	if parent == nil {
 		return false
-	} else if parent.key == key {
+	}
+	compared := comparator(parent.Value, value)
+	if compared == 0 {
 		return true
-	} else if parent.key < key {
-		return search(parent.right, key)
+	} else if compared < 0 {
+		return search(parent.Right, value, comparator)
 	} else {
-		return search(parent.left, key)
+		return search(parent.Left, value, comparator)
 	}
 }
 
-func remove(parent *node, key int) *node {
+func remove[V interface{}](parent *Node[V], value V, comparator func(V, V) int) *Node[V] {
 	if parent == nil {
 		return nil
 	}
 
-	if key < parent.key {
-		parent.left = remove(parent.left, key)
-	} else if parent.key < key {
-		parent.right = remove(parent.right, key)
-	} else if parent.left == nil {
-		newParent := parent.right
-		parent.right = nil
-		return newParent
-	} else if parent.right == nil {
-		newParent := parent.left
-		parent.left = nil
-		return newParent
-	} else if parent.left.value < parent.right.value {
-		newParent := leftRotate(parent)
-		newParent.left = remove(newParent.left, key)
-		return newParent
+	compared := comparator(parent.Value, value)
+	if compared > 0 {
+		parent.Left = remove(parent.Left, value, comparator)
+		return parent
+	} else if compared < 0 {
+		parent.Right = remove(parent.Right, value, comparator)
+		return parent
+	} else if parent.Left == nil {
+		return parent.Right
+	} else if parent.Right == nil {
+		return parent.Left
+	} else if parent.Left.priority < parent.Right.priority {
+		newRoot := leftRotate(parent)
+		newRoot.Left = remove(newRoot.Left, value, comparator)
+		return newRoot
 	} else {
-		newParent := rightRotate(parent)
-		newParent.right = remove(newParent.right, key)
-		return newParent
+		newRoot := rightRotate(parent)
+		newRoot.Right = remove(newRoot.Right, value, comparator)
+		return newRoot
 	}
-
-	return parent
 }
 
-func createNode(key int) *node {
-	return &node{
-		key:   key,
-		value: rand.Intn(1000000),
+func mostLeft[V interface{}](parent *Node[V]) V {
+	if parent.Left == nil {
+		return parent.Value
+	}
+	return mostLeft(parent.Left)
+}
+
+func mostRight[V interface{}](parent *Node[V]) V {
+	if parent.Right == nil {
+		return parent.Value
+	}
+	return mostRight(parent.Right)
+}
+
+func createNode[V interface{}](value V) *Node[V] {
+	return &Node[V]{
+		Value:    value,
+		priority: rand.Intn(1000000),
 	}
 }

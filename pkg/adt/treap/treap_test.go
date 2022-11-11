@@ -2,10 +2,12 @@ package treap
 
 import (
 	"testing"
+
+	"github.com/RyosukeCla/go-cs/pkg/adt/bstree"
 )
 
 func TestTreap(t *testing.T) {
-	treap := NewTreap()
+	treap := NewTreap(bstree.NumberComparator[int])
 	treap.Insert(1)
 	treap.Insert(2)
 	treap.Insert(3)
@@ -18,7 +20,7 @@ func TestTreap(t *testing.T) {
 }
 
 func TestTreap_Remove(t *testing.T) {
-	treap := NewTreap()
+	treap := NewTreap(bstree.NumberComparator[int])
 	treap.Insert(1)
 	treap.Insert(2)
 	treap.Insert(3)

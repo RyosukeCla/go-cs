@@ -6,7 +6,7 @@ import (
 )
 
 func TestBSTree(t *testing.T) {
-	tree := NewBSTree()
+	tree := NewBSTree(NumberComparator[int])
 	tree.Insert(10)
 	tree.Insert(20)
 	tree.Insert(5)
